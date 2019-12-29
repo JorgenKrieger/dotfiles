@@ -1,0 +1,61 @@
+## Brew
+brew "mas"
+
+brew "git"
+brew "zsh"
+brew "tree"
+
+brew "dockutil"
+
+
+## Cask
+cask "visual-studio-code"
+cask "postman"
+cask "iterm2"
+cask "arduino"
+cask "sequel-pro"
+cask "dash"
+
+cask "transmit"
+cask "hammerspoon"
+cask "docker"
+
+cask "appcleaner"
+cask "notion"
+cask "alfred"
+cask "bartender"
+
+cask "slack"
+cask "skype"
+cask "whatsapp"
+
+cask "firefox-developer-edition"
+cask "google-chrome"
+cask "microsoft-edge-dev"
+
+cask "1password"
+cask "dropbox"
+
+cask "sketch"
+cask "craftmanager"
+cask "adobe-creative-cloud"
+cask "imageoptim"
+
+
+## Mac App Store
+mas "Keynote", id: 409183694
+mas "Pages", id: 409201541
+mas "Numbers", id: 409203825
+
+mas "Spark - Email App by Readdle", id: 1176895641
+mas "Harvest", id: 506189836
+mas "Amphetamine", id: 937984704
+
+mas "GIPHY Capture. The GIF Maker", id: 668208984
+
+mas "AdBlock for Safari", id: 1402042596
+mas "Grammarly for Safari", id: 1462114288
+mas "Ghostery Lite", id: 1436953057
+
+mas "KakaoTalk", id: 869223134
+mas "LINE", id: 539883307

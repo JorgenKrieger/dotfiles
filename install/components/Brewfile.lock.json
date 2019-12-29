@@ -1,0 +1,229 @@
+{
+  "entries": {
+    "brew": {
+      "mas": {
+        "version": "1.6.3",
+        "bottle": {
+          "cellar": ":any",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/mas-1.6.3.catalina.bottle.tar.gz",
+              "sha256": "2069b8c1c1a64c2fb91cc1c25ab9c9890c61f2182224b9e0605a35a151bb85bd"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/mas-1.6.3.mojave.bottle.tar.gz",
+              "sha256": "3dd5a50b551a37c164c31375cc8498ba870e29e50086bd5c4c294bc26708a6d2"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/mas-1.6.3.high_sierra.bottle.tar.gz",
+              "sha256": "a0d1e45203448c08420c3eab2d40ef957fd22c8e40fbeb067bc7bffe4f08dfe2"
+            }
+          }
+        }
+      },
+      "git": {
+        "version": "2.24.1",
+        "bottle": {
+          "cellar": "/usr/local/Cellar",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/git-2.24.1.catalina.bottle.tar.gz",
+              "sha256": "2779f9cea861ef4d906093ac7b7255b3eeb7b6f76cbbc8407035bd3d3b80305d"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/git-2.24.1.mojave.bottle.tar.gz",
+              "sha256": "423599ea4d93020e4ee33965bf53c0e629c1d5a16e59efc657b4c914d9f52bd0"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/git-2.24.1.high_sierra.bottle.tar.gz",
+              "sha256": "ce56a6b4012a93bfee18cc5017788033c423bef5f732f3117dfa59b688b08b5c"
+            }
+          }
+        }
+      },
+      "dockutil": {
+        "version": "2.0.5",
+        "bottle": false
+      },
+      "zsh": {
+        "version": "5.7.1",
+        "bottle": {
+          "cellar": "/usr/local/Cellar",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/zsh-5.7.1.catalina.bottle.tar.gz",
+              "sha256": "a24afee5cc1af2b139b6afb8963992b3fb22a4b9fbfa02402ac17e6bfa66a27a"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/zsh-5.7.1.mojave.bottle.tar.gz",
+              "sha256": "793d87f67e64a5e01dfdea890af218e4779a2df514d395b956e464129af16fd7"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/zsh-5.7.1.high_sierra.bottle.tar.gz",
+              "sha256": "6656fe9aa5d5cbaff49bc9c1ccf17b7d96d21036ac44c9181bd35c57dc38b450"
+            },
+            "sierra": {
+              "url": "https://homebrew.bintray.com/bottles/zsh-5.7.1.sierra.bottle.tar.gz",
+              "sha256": "008dfc844b88fcd61925233b08f0d78b2851bf2901320a5f6ee975da4b8604e3"
+            }
+          }
+        }
+      },
+      "tree": {
+        "version": "1.8.0",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/tree-1.8.0.catalina.bottle.tar.gz",
+              "sha256": "18f7984bdbab22251e9fc3c7832dbace5c7f7a77e8d63717bb0078385e2bf255"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/tree-1.8.0.mojave.bottle.tar.gz",
+              "sha256": "7152288c457dd893de50fa9d6ac9a8599748564e1b3586eec8eff7057089051a"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/tree-1.8.0.high_sierra.bottle.tar.gz",
+              "sha256": "107d965994381d34e90b58a62f1c306c1b8a698db2696cdd905ba65c801ecc3b"
+            },
+            "sierra": {
+              "url": "https://homebrew.bintray.com/bottles/tree-1.8.0.sierra.bottle.tar.gz",
+              "sha256": "07d980571469a0cc699c69a8726eee338f782ba61c041e58f01ddb2924d08aeb"
+            }
+          }
+        }
+      }
+    },
+    "cask": {
+      "visual-studio-code": {
+        "version": "1.41.1"
+      },
+      "postman": {
+        "version": "7.14.0"
+      },
+      "iterm2": {
+        "version": "3.3.7"
+      },
+      "arduino": {
+        "version": "1.8.10"
+      },
+      "sequel-pro": {
+        "version": "1.1.2"
+      },
+      "transmit": {
+        "version": "5.6.1"
+      },
+      "hammerspoon": {
+        "version": "0.9.76"
+      },
+      "docker": {
+        "version": "2.1.0.5,40693"
+      },
+      "appcleaner": {
+        "version": "3.5"
+      },
+      "notion": {
+        "version": "2.0.5"
+      },
+      "alfred": {
+        "version": "4.0.7_1131"
+      },
+      "bartender": {
+        "version": "3.1.07"
+      },
+      "slack": {
+        "version": "4.2.0"
+      },
+      "skype": {
+        "version": "8.55.0.141"
+      },
+      "whatsapp": {
+        "version": "0.3.9309"
+      },
+      "firefox-developer-edition": {
+        "version": "latest"
+      },
+      "google-chrome": {
+        "version": "79.0.3945.88"
+      },
+      "microsoft-edge-dev": {
+        "version": "80.0.355.1"
+      },
+      "1password": {
+        "version": "7.4.1"
+      },
+      "dropbox": {
+        "version": "latest"
+      },
+      "sketch": {
+        "version": "61.2-89653"
+      },
+      "craftmanager": {
+        "version": "1.0.91"
+      },
+      "adobe-creative-cloud": {
+        "version": "latest"
+      },
+      "imageoptim": {
+        "version": "1.8.8"
+      },
+      "dash": {
+        "version": "5.0.3"
+      }
+    },
+    "mas": {
+      "Keynote": {
+        "id": "409183694",
+        "version": "9.2.1"
+      },
+      "Pages": {
+        "id": "409201541",
+        "version": "8.2.1"
+      },
+      "Numbers": {
+        "id": "409203825",
+        "version": "6.2.1"
+      },
+      "Spark - Email App by Readdle": null,
+      "Harvest": {
+        "id": "506189836",
+        "version": "2.1.16"
+      },
+      "Amphetamine": {
+        "id": "937984704",
+        "version": "4.2"
+      },
+      "GIPHY Capture. The GIF Maker": null,
+      "AdBlock for Safari": null,
+      "Grammarly for Safari": {
+        "id": "1462114288",
+        "version": "9.10"
+      },
+      "Ghostery Lite": null,
+      "KakaoTalk": {
+        "id": "869223134",
+        "version": "2.6.9"
+      },
+      "LINE": {
+        "id": "539883307",
+        "version": "5.21.2"
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "catalina": {
+        "HOMEBREW_VERSION": "2.2.2",
+        "HOMEBREW_PREFIX": "/usr/local",
+        "Homebrew/homebrew-core": "47102bf4e70774abeee85f9dceb01373ef07c7d0",
+        "CLT": "11.0.0.0.1.1567737322",
+        "Xcode": "11.3",
+        "macOS": "10.15.2"
+      }
+    }
+  }
+}

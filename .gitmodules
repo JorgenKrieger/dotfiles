@@ -1,0 +1,11 @@
+[submodule "fonts/google-fonts"]
+  path = fonts/google-fonts
+  url = git@github.com:google/fonts.git
+
+[submodule "fonts/operator-mono"]
+  path = fonts/operator-mono
+  url = git@github.com:Seaony/Operator-mono.git
+
+[submodule "fonts/operator-mono-nerdfont"]
+  path = fonts/operator-mono-nerdfont
+  url = git2github.com:piq9117/operator-mono-nerdfont.git

@@ -1,0 +1,7 @@
+[user]
+  name = Jörgen Krieger
+  email = jorgen@labelnoir.me
+  username = jorgenkrieger
+
+[core]
+  editor = vim
