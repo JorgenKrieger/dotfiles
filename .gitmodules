@@ -1,11 +1,18 @@
-[submodule "fonts/google-fonts"]
-  path = fonts/google-fonts
-  url = git@github.com:google/fonts.git
-
-[submodule "fonts/operator-mono"]
-  path = fonts/operator-mono
-  url = git@github.com:Seaony/Operator-mono.git
-
-[submodule "fonts/operator-mono-nerdfont"]
-  path = fonts/operator-mono-nerdfont
-  url = git2github.com:piq9117/operator-mono-nerdfont.git
+[submodule "operator-mono-nerdfont"]
+	path = fonts/operator-mono-nerdfont
+	url = https://github.com/piq9117/operator-mono-nerdfont
+[submodule "google-fonts"]
+	path = fonts/google-fonts
+	url = https://github.com/google/fonts
+[submodule "operator-mono"]
+	path = fonts/operator-mono
+	url = https://github.com/gabriel-TheCode/Operator-Mono
+[submodule "oh-my-zsh"]
+	path = dots/.oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "zsh-syntax-highlighting"]
+	path = configurations/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "spaceship-prompt"]
+	path = configurations/zsh/themes/spaceship-prompt
+	url = https://github.com/denysdovhan/spaceship-prompt

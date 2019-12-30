@@ -1,0 +1,117 @@
+{
+    // VSCode Theme
+    "workbench.colorTheme": "Monokai Pro",
+
+    // Editor settings
+    "editor.fontFamily": "'Operator Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.fontWeight": "400",
+    "editor.fontLigatures": true,
+    "editor.letterSpacing": 0.2,
+    "editor.lineHeight": 22,
+    
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 5,
+    "editor.cursorBlinking": "phase",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.renderWhitespace": "none",
+    "editor.renderIndentGuides": false,
+    "editor.quickSuggestions": false,
+    
+    "emmet.showExpandedAbbreviation": "never",
+    "emmet.triggerExpansionOnTab": true,
+
+    "files.watcherExclude": {
+        "**": true
+    },
+    "files.useExperimentalFileWatcher": false,
+
+    "window.zoomLevel": -1,
+
+    // Explorer settings
+    "explorer.openEditors.visible": 0,
+    "workbench.tree.indent": 20,
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "files.exclude": {
+        "node_modules/": true
+    },
+
+    // Terminal settings
+    "terminal.integrated.fontFamily": "'OperatorMono Nerd Font",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.shell.osx": "/bin/zsh",
+
+    // Entensions
+    "extensions.showRecommendationsOnlyOnDemand": true,
+
+    // Extension: Colorize
+    "colorize.languages": [
+        "javascript",
+        "json",
+        "css",
+        "sass",
+        "scss",
+        "xml",
+        "svg"
+    ],
+    "colorize.colorized_variables": [
+        "CSS",
+        "LESS",
+        "SASS",
+        "STYLUS"
+    ],
+    "colorize.enable_search_variables": true,
+
+    // Extension: ESLint
+    "eslint.enable": true,
+
+    // Extension: Indent Rainbow
+    "indentRainbow.colors": [
+        "rgba(127, 127, 127, .05)",
+        "rgba(127, 127, 127, .1)",
+        "rgba(127, 127, 127, .15)",
+        "rgba(127, 127, 127, .2)",
+        "rgba(127, 127, 127, .15)",
+        "rgba(127, 127, 127, .1)",
+        "rgba(127, 127, 127, .05)",
+        "rgba(127, 127, 127, 0)"
+    ],
+
+    // Extension: Bracket Pair Colorizer
+    "bracketPairColorizer.showVerticalScopeLine": false,
+
+    // Extension: Vim
+    "vim.history": 1000,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["i", "i"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+
+    // Extension: Auto Close Tag
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "php",
+        "blade",
+        "ejs",
+        "jinja",
+        "javascriptreact",
+        "typescriptreact",
+        "plaintext",
+        "markdown",
+        "vue",
+        "liquid",
+        "erb",
+        "lang-cfml",
+        "cfml",
+        "HTML (Eex)"
+    ]
+}

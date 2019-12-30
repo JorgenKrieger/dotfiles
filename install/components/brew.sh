@@ -16,10 +16,5 @@ else
   ok
 fi
 
-action "Installing packages & GUI apps"
-
-running "Tap brew versions"
-brew tap homebrew/cask-versions
-
-running "Install brewfile"
+action "Installing packages & apps"
 brew bundle --file=$PATH_INSTALL/components/Brewfile

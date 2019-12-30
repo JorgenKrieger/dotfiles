@@ -41,4 +41,4 @@ running "Set default screenshot location"
 # ######################################
 
 action "Setting background image"
-osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/Users/jorgen/Library/Mobile Documents/com~apple~CloudDocs/Design/Wallpaper/Desktop/alexandre-chambon-a3OwknPcIq8-unsplash.jpg"'
+osascript -e 'tell application "Finder" to set desktop picture to POSIX file "~/dotfiles/img/wallpaper.jpg"'

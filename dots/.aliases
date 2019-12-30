@@ -13,3 +13,6 @@ alias edge="open -a Microsoft\ Edge\ Dev"
 alias chrome="open -a Google\ Chrome"
 alias safari="open -a Safari"
 alias firefox="open -a Firefox\ Developer\ Edition"
+
+# Misc
+alias cat="bat"

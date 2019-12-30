@@ -17,25 +17,25 @@ function installer() {
 }
 
 function running() {
-    echo -e "$COL_YELLOW ⇒ $COL_RESET"$1""
+  echo -e "$COL_YELLOW ⇒ $COL_RESET"$1""
 }
 
 function action() {
-    echo -e "\n${COL_YELLOW}Action:$COL_RESET $COL_BOLD$1...$COL_RESET"
+  echo -e "\n${COL_YELLOW}Action:$COL_RESET $COL_BOLD$1...$COL_RESET"
 }
 
 function warn() {
-    echo -e "$COL_YELLOW[warning]$COL_RESET "$1
+  echo -e "$COL_YELLOW[warning]$COL_RESET "$1
 }
 
 function ok() {
-    echo -e "${COL_GREEN}Ok$COL_RESET "$1
+  echo -e "${COL_GREEN}Ok$COL_RESET "$1
 }
 
 function error() {
-    echo -e "${COL_RED}Error$COL_RESET "$1
+  echo -e "${COL_RED}Error$COL_RESET "$1
 }
 
 function dim() {
-    echo -e $COL_DIM$1$COL_RESET
+  echo -e $COL_DIM$1$COL_RESET
 }

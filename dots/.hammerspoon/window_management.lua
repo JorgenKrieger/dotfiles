@@ -39,6 +39,9 @@ keys.bindKeyFor("Fullscreen Window", function()
   local window, frame, screen, resolution = getWindow()
   if not window then return end
 
+  frame.h = screen.h
+  frame.w = screen.w
+
   window:setFrame(frame)
 end)
 
@@ -161,7 +164,7 @@ keys.bindKeyFor("Left 2/3 Window", function()
   local window, frame, screen, resolution = getWindow()
   if not window then return end
 
-  if frame.w = math.floor(screen.w / 3) * 2 and frame.x == screen.x then
+  if frame.w == math.floor(screen.w / 3) * 2 and frame.x == screen.x then
     -- If already in targeted position
     frame.x = screen.x + math.floor(screen.w / 3)
   else
@@ -283,7 +286,7 @@ keys.bindKeyFor("Top 2/3 Window", function()
   local window, frame, screen, resolution = getWindow()
   if not window then return end
 
-  if frame.h = math.floor(screen.h / 3) * 2 and frame.y == screen.y then
+  if frame.h == math.floor(screen.h / 3) * 2 and frame.y == screen.y then
     -- If already in targeted position
     frame.y = screen.y + math.floor(screen.h / 3)
   else

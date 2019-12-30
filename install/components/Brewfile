@@ -1,12 +1,20 @@
+## Taps
+tap "homebrew/cask-versions"
+
 ## Brew
 brew "mas"
 
 brew "git"
 brew "zsh"
+
+brew "bat"
 brew "tree"
+brew "wget"
 
 brew "dockutil"
 
+brew "node"
+brew "python"
 
 ## Cask
 cask "visual-studio-code"
@@ -59,3 +67,5 @@ mas "Ghostery Lite", id: 1436953057
 
 mas "KakaoTalk", id: 869223134
 mas "LINE", id: 539883307
+
+mas "Endel: Focus, Sleep, Relax", id: 1484348796

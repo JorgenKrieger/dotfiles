@@ -64,3 +64,19 @@ Keys = {
     ["Music"] = {ctrlcmd, "4"}
   }
 }
+
+function Keys.keyFor(name)
+  local keys = Keys.triggers[name]
+  if not keys then
+    keys = Keys.specialTriggers[name]
+  end
+
+  return keys
+end
+
+function Keys.bindKeyFor(appName, fn)
+  keys = Keys.keyFor(appName)
+  hotkey.bind(keys[1], keys[2], fn)
+end
+
+return Keys

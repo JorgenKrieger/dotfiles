@@ -1,3 +1,13 @@
+export ZSH=~/.oh-my-zsh
+export ZSH_CUSTOM=$HOME/dotfiles/configurations/zsh
+
+ZSH_THEME="spaceship"
+DEFAULT_USER=$(whoami)
+
+plugins=(docker git extract zsh-syntax-highlighting)
+
+# Init oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
 # Paths
 export PATH="$HOME/.bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
@@ -9,7 +19,4 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # Aliases
-ALIAS_FOLDER="/dotfiles/dots/.config/zsh/aliases"
-for file in $HOME/$ALIAS_FOLDER/*.sh; do
-  source $file
-done
+source $HOME/.aliases
