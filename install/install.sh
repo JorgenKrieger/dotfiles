@@ -46,6 +46,7 @@ done
 
 # Setup apps
 source $PATH_CONFIGURATIONS/tools/vscode/setup.sh
+source $PATH_CONFIGURATIONS/tools/iterm2/setup.sh
 
 # Allow Apps from Anywhere
 installer "Allow macOS to open apps from anywhere"

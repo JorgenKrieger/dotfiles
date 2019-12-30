@@ -257,6 +257,9 @@
       },
       "imageoptim": {
         "version": "1.8.8"
+      },
+      "drawio": {
+        "version": "12.4.2"
       }
     },
     "mas": {
@@ -309,8 +312,8 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.2.2",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "ff8c2f2b0240a03c492363cfe95b8ff307d05355",
-        "CLT": "11.0.0.0.1.1567737322",
+        "Homebrew/homebrew-core": "cc471c1aedf3c0c27959c961d88bbcd635c2085b",
+        "CLT": "11.3.0.0.1.1574140115",
         "Xcode": "11.3",
         "macOS": "10.15.2"
       }
