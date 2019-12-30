@@ -24,7 +24,6 @@ PLUGINS=(
     thibaudcolas.stylelint
 
     # Intellisense
-    Zignd.html-css-class-completion
     christian-kohler.path-intellisense
     felixfbecker.php-intellisense
     gencer.html-slim-scss-css-class-completion

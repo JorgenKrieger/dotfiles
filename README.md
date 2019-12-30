@@ -1,14 +1,17 @@
+![Setup](img/screenshot.jpg)
+
 <h1 align="center">dotfiles</h1>
 <h4 align="center">💻 Automated configuration, preferences and software installer for macOS</h4>
-<p align="center"><img src="https://img.shields.io/badge/macOS-Catalina-999999?style=flat-square">
+<p align="center">This dotfiles setup has been created for personal use on clean systems.<br>Usage on existing systems has not been tested. Support for existing systems is work in progress.</p>
 
-<p align="center">Complete overhaul of my dotfiles. </p>
+<p align="center"><img src="https://img.shields.io/badge/macOS-Catalina-999999?style=flat-square">
+</p>
 
 ## Installation
 
 Open terminal, paste the code and kaboom!
 
-```
+```bash
 git clone --recurse-submodules https://github.com/jorgenkrieger/dotfiles ~/dotfiles;
  ~/dotfiles/install/install.sh
 ```
@@ -112,6 +115,8 @@ This project changes many settings in macOS and tools.
 - Disable smart dashes as they're annoying when typing codes
 - Disable smart quote replacement
 - Disable auto-correct
+
+<sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L10)</sup>
 </details>
 
 <details>
@@ -126,6 +131,8 @@ This project changes many settings in macOS and tools.
 - Audio
   - Increase sound quality for Bluetooth headphones
 - Set timezone
+
+<sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L59)</sup>
 </details>
 
 <details>
@@ -135,6 +142,8 @@ This project changes many settings in macOS and tools.
 - Save screenshots to the desktop
 - Save screenshots in PNG format
 - Enable subpixel font rendering on non-Apple LCDs
+
+<sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L100)</sup>
 </details>
 
 <details>
@@ -159,6 +168,8 @@ This project changes many settings in macOS and tools.
 - Show the ~/Library folder
 - Show the /Volumes folder
 - Expand the File Info panes
+
+<sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L124)</sup>
 </details>
 
 <details>
@@ -173,6 +184,8 @@ This project changes many settings in macOS and tools.
   - Don't automatically rearrange Spaces based on most recent use
   - Remove the auto-hiding Dock delay
   - Remove the animation when hiding/showing the Dock
+
+  <sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L202)</sup>
 </details>
 
 <details>
@@ -197,6 +210,8 @@ This project changes many settings in macOS and tools.
 - Block pop-up windows
 - Enable "Do Not Track"
 - Update extensions automatically
+
+<sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L240)</sup>
 </details>
 
 <details>
@@ -206,6 +221,8 @@ This project changes many settings in macOS and tools.
   - Visualize CPU usage in the Activity Monitor Dock icon
   - Show all processes in Activity Monitor
   - Sort Activity Monitor results by CPU usage
+
+  <sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L313)</sup>
 </details>
 
 <details>
@@ -216,6 +233,8 @@ This project changes many settings in macOS and tools.
   - Use plain text mode for the new TextEdit documents
   - Open and save files as UTF-8 in TextEdit
   - Enable the debug menu in Disk Utility
+
+  <sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L334)</sup>
 </details>
 
 <details>
@@ -226,6 +245,8 @@ This project changes many settings in macOS and tools.
   - Download newly available updates in background
   - Install System data files & security updates
   - Turn on app auto-update
+
+  <sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L356)</sup>
 </details>
 
 <details>
@@ -235,31 +256,126 @@ This project changes many settings in macOS and tools.
   - Disable the all too sensitive backswipe on Magic Mouse
   - Use the system-native print preview dialog
   - Expand the print dialog by default
+
+  <sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L379)</sup>
 </details>
 
 <details>
   <summary><b>Visual Studio Code</b></summary>
 
   - Disable Apple press and hold for VS Code
+
+  <sup>View [source code](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/defaults.sh#L403)</sup>
+</details>
+
+## Personal Preferences
+
+<details>
+  <summary><b>macOS</b></summary>
+
+  - Desktop
+    - [Default screenshot location](https://github.com/JorgenKrieger/dotfiles/blob/master/install/components/desktop.sh#L29)
+    - [Temporary folder](https://github.com/JorgenKrieger/dotfiles/blob/master/install/components/desktop.sh#L9)
+    - [Background](https://github.com/JorgenKrieger/dotfiles/blob/master/img/wallpaper.jpg) - by [Alexandre Chambon](https://unsplash.com/@goodspleen)
+  - [Dock icons](https://github.com/JorgenKrieger/dotfiles/blob/master/configurations/macOS/dock.sh)
+  - DNS selection 
+    - [CloudFlare](https://1.1.1.1/dns/)
+    - [Google DNS](https://developers.google.com/speed/public-dns/)
+    - [Open DNS](https://use.opendns.com/))
+  - Hosts file
+    - [someonewhocares.org](https://someonewhocares.org/hosts/)
+</details>
+
+<details>
+  <summary><b>ZSH</b></summary>
+
+  - [Aliases](https://github.com/JorgenKrieger/dotfiles/blob/master/dots/.aliases)
+  - Theme: [Spaceship prompt](https://github.com/denysdovhan/spaceship-prompt)
+  - Plugin: [ZSH Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+</details>
+
+<details>
+  <summary><b>Hammerspoon</b></summary>
+
+  - Window Management
+    - Fixed resolutions (1920x1080, 1440x900, 1336x768)
+    - Full screen
+    - Center screen
+    - Left/Right (1/2, 1/3, 2/3)
+    - Top/Bottom (1/2, 1/3, 2/3)
+    - Monitor change (North, East, South, West)
+  - Application Launcher
+</details>
+
+<details>
+  <summary><b>Visual Studio Code</b></summary>
+  <b>Settings</b>
+
+  - Editor<br>
+    <sup>Font, line height, cursor, tabs, suggestions</sup>
+  - Explorer<br>
+    <sup>Icons, exclude list, indentation</sup>
+  - Terminal<br>
+    <sup>Font, shell</sup>
+  - Extensions
+    - Colorize
+    - ESLint
+    - Indent Rainbow
+    - Bracket Pair Colorizer
+    - Vim
+    - Auto Close Tag
+
+  <b>Plugins</b>
+
+  Languages
+  - [Ruby](https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby)
+  - [Sass](https://marketplace.visualstudio.com/items?itemName=syler.sass-indented)
+  - [Slim](https://marketplace.visualstudio.com/items?itemName=sianglim.slim)
+  - [Vim](https://marketplace.visualstudio.com/items?itemName=dunstontc.viml)
+  - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+
+  Linters
+  - [Coffeelinter](https://marketplace.visualstudio.com/items?itemName=lkytal.coffeelinter)
+  - [ESLinter](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  - [Sass Linter](https://marketplace.visualstudio.com/items?itemName=glen-84.sass-lint)
+  - [Slim Linter](https://marketplace.visualstudio.com/items?itemName=aliariff.slim-lint)
+  - [Stylelint](https://marketplace.visualstudio.com/items?itemName=thibaudcolas.stylelint)
+
+  Intellisense
+  - [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
+  - [PHP Intellisense](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-intellisense)
+  - [SCSS Intellisense](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss)
+  - [SCSS Everywhere](https://marketplace.visualstudio.com/items?itemName=gencer.html-slim-scss-css-class-completion)
+
+  Themes & colors
+  - [Monokai Pro](https://marketplace.visualstudio.com/items?itemName=monokai.theme-monokai-pro-vscode)
+  - [File Icons](https://marketplace.visualstudio.com/items?itemName=file-icons.file-icons) & [Material icon theme](https://marketplace.visualstudio.com/items?itemName=pkief.material-icon-theme)
+  - [Bracket pari colorizer 2](https://marketplace.visualstudio.com/items?itemName=coenraads.bracket-pair-colorizer-2)
+  - [Better comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+  - [Indent rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
+  - [Colorize](https://marketplace.visualstudio.com/items?itemName=kamikillerto.vscode-colorize)
+
+  Code automatisation
+  - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
+  - [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+  - [TabNine](https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode) 
+
+  Misc
+  - [Alignment](https://marketplace.visualstudio.com/items?itemName=annsk.alignment)
+  - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+  - [Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
 </details>
 
 
-## 🖤 References
+## References 🖤
 
 This setup and configuration has been inspired by a lot of awesome developers and their dotfiles.
 
 - [Tom de Bruijn](https://github.com/tombruijn/dotfiles)
 - [Martijn Bleeker](https://github.com/martijnbleeker/dotfiles)
 - [Adam Eivy](https://github.com/atomantic/dotfiles)
-- And others over at [Github does dotfiles](https://dotfiles.github.io/)
 
+<sup>And others over at [Github does dotfiles](https://dotfiles.github.io/)</sup>
 
-### Submodules
-
-- [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
-- [Spaceship prompt](https://github.com/denysdovhan/spaceship-prompt)
-- [ZSH Syntax Highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-
-
-
+---
 <p align="center"><sup>Made with 🧡 in The Netherlands</sup></p>
