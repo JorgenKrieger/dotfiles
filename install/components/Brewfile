@@ -23,6 +23,7 @@ cask "iterm2"
 cask "arduino"
 cask "sequel-pro"
 cask "dash"
+cask "drawio"
 
 cask "transmit"
 cask "hammerspoon"

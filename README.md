@@ -5,7 +5,7 @@
 <p align="center">This dotfiles setup has been created for personal use on clean systems.<br>Usage on existing systems has not been tested. Support for existing systems is work in progress.</p>
 
 <p align="center"><img src="https://img.shields.io/badge/macOS-Catalina-999999?style=flat-square">
-</p>
+ <img src="https://img.shields.io/github/issues/JorgenKrieger/dotfiles/Feature Request?label=Feature%20Requests&style=flat-square&color=%234cd964"> <img src="https://img.shields.io/github/issues/JorgenKrieger/dotfiles/Bug?color=%23ff3b30&label=Bugs&style=flat-square"> <img src="https://img.shields.io/github/issues/JorgenKrieger/dotfiles/Bug?color=%230095ff&label=Questions&style=flat-square"></p>
 
 ## Installation
 
@@ -42,9 +42,10 @@ Most required apps (cli & gui) are installed via Homebrew (using casks & [mas](h
 - [Sequel Pro](https://sequelpro.com/) - Database manager
 - [Transmit](https://www.panic.com/transmit/) - FTP, SFTP, S3 and more
 - [Postman](https://www.getpostman.com/) - API Exploration 
+- [Draw.io](https://www.draw.io) - Drawing schematics
 - [Dash](https://kapeli.com/dash) - Offline code docs
 - [Hammerspoon](https://www.hammerspoon.org/) - macOS programming via Lua
-- [Arduino](https://www.arduino.cc/) - 
+- [Arduino](https://www.arduino.cc/) - Arduino SDK
 </details>
 
 
