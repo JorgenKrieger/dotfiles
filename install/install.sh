@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 PATH_INSTALL="$( cd "$(dirname "$0")"; pwd -P)"
 PATH_DOTFILES="$(dirname "$PATH_INSTALL")"
 PATH_DOTS="$PATH_DOTFILES/dots"
@@ -11,9 +12,19 @@ PATH_FONTS="$PATH_DOTFILES/fonts"
 source $PATH_INSTALL/helpers/colors.sh
 installer "Hello world! Dotfiles installer is booting."
 
+# Install command line tools for macOS
+if type xcode-select >&- && xpath=$( xcode-select --print-path ) &&
+  test -d "${xpath}" && test -x "${xpath}" ; then
+  #... is correctly installed
+  dim "Command line tools already installed"
+else
+  #... isn't correctly installed
+  action "Preparing Xcode"
+  xcode-select --install
+fi
 
 # Get sudo access
-installer "Let's get sudo access up front"
+action "Enabling sudo access"
 sudo -v
 
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &

@@ -39,6 +39,8 @@ keys.bindKeyFor("Fullscreen Window", function()
   local window, frame, screen, resolution = getWindow()
   if not window then return end
 
+  frame.x = screen.x
+  frame.y = screen.y
   frame.h = screen.h
   frame.w = screen.w
 

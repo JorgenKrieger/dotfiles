@@ -27,7 +27,7 @@
     },
     "files.useExperimentalFileWatcher": false,
 
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 0,
 
     // Explorer settings
     "explorer.openEditors.visible": 0,

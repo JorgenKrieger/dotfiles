@@ -207,9 +207,6 @@ defaults write com.apple.dock show-process-indicators -bool true
 running "Don’t animate opening applications from the Dock"
 defaults write com.apple.dock launchanim -bool false
 
-running "Don’t animate opening applications from the Dock"
-defaults write com.apple.dock launchanim -bool false
-
 running "Speed up Mission Control animations"
 defaults write com.apple.dock expose-animation-duration -float 0.1
 
@@ -233,11 +230,6 @@ defaults write com.apple.dock autohide-time-modifier -float 0
 
 running "Automatically hide and show the Dock"
 defaults write com.apple.dock autohide -bool true
-
-running "Add a spacer to the left side of the Dock (where the applications are)"
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-running "Add a spacer to the right side of the Dock (where the Trash is)"
-defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
 
 
@@ -344,14 +336,9 @@ action "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
 running "Enable the debug menu in Address Book"
 defaults write com.apple.addressbook ABShowDebugMenu -bool true
 
-running "Enable Dashboard dev mode - allows keeping widgets on the desktop"
-defaults write com.apple.dashboard devmode -bool true
-
-running "Enable the debug menu in iCal - pre-10.8"
-defaults write com.apple.iCal IncludeDebugMenu -bool true
-
 running "Use plain text mode for new TextEdit documents"
 defaults write com.apple.TextEdit RichText -int 0
+
 running "Open and save files as UTF-8 in TextEdit"
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
@@ -367,12 +354,6 @@ defaults write com.apple.DiskUtility advanced-image-options -bool true
 # ##############################################################################
 
 action "Mac App Store"
-
-running "Enable the WebKit Developer Tools in the Mac App Store"
-defaults write com.apple.appstore WebKitDeveloperExtras -bool true
-
-running "Enable Debug Menu in the Mac App Store"
-defaults write com.apple.appstore ShowDebugMenu -bool true
 
 running "Enable the automatic update check"
 defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true

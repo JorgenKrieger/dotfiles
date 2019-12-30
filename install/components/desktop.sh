@@ -41,4 +41,4 @@ running "Set default screenshot location"
 # ######################################
 
 action "Setting background image"
-osascript -e 'tell application "Finder" to set desktop picture to POSIX file "~/dotfiles/img/wallpaper.jpg"'
+osascript -e 'tell application "Finder" to set desktop picture to (POSIX path of (path to home folder)) & "dotfiles/img/wallpaper.jpg" as POSIX file'

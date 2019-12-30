@@ -16,3 +16,4 @@ alias firefox="open -a Firefox\ Developer\ Edition"
 
 # Misc
 alias cat="bat"
+alias tree="tree -C"

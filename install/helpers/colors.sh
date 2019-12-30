@@ -13,7 +13,7 @@ COL_CYAN=$ESC_SEQ"36;01m"
 
 # Echos
 function installer() {
-  echo -e "\n$BOLD$COL_CYAN\[._.]/$COL_RESET" - $COL_BOLD$COL_UNDER$1$COL_RESET
+  echo -e "\n$BOLD$COL_MAGENTA<(^^,)>$COL_RESET" - $COL_BOLD$COL_UNDER$1$COL_RESET
 }
 
 function running() {
