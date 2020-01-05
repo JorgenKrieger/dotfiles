@@ -16,6 +16,8 @@ brew "dockutil"
 brew "node"
 brew "python"
 
+brew "the_silver_searcher"
+
 ## Cask
 cask "visual-studio-code"
 cask "postman"

@@ -34,6 +34,7 @@ id_rsa
 *.un~
 Session.vim
 *.swp
+.vim/plugged
 
 ## Node
 *.log

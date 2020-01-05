@@ -47,6 +47,8 @@ PLUGINS=(
     annsk.alignment
     ms-azuretools.vscode-docker
     vscodevim.vim
+    xadillax.viml
+    zjhmale.vscode-ag
 )
 
 for extension in "${PLUGINS[@]}"; do
