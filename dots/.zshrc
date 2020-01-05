@@ -1,4 +1,8 @@
-export ZSH=~/.oh-my-zsh
+# Set new path for zcompdump
+compinit -d $HOME/.cache/zsh/zcompdump-$ZSH_VERSION
+
+# Set oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/dotfiles/configurations/zsh
 
 ZSH_THEME="spaceship"
@@ -6,7 +10,6 @@ DEFAULT_USER=$(whoami)
 
 plugins=(docker git extract zsh-syntax-highlighting)
 
-# Init oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Paths
