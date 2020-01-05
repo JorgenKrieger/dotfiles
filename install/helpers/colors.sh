@@ -16,6 +16,10 @@ function installer() {
   echo -e "\n$BOLD$COL_MAGENTA<(^^,)>$COL_RESET" - $COL_BOLD$COL_UNDER$1$COL_RESET
 }
 
+function question() {
+  echo -e "${COL_BOLD}${COL_BLUE}(?)$COL_RESET "$1
+}
+
 function running() {
   echo -e "$COL_YELLOW ⇒ $COL_RESET"$1""
 }
@@ -25,7 +29,7 @@ function action() {
 }
 
 function warn() {
-  echo -e "$COL_YELLOW[warning]$COL_RESET "$1
+  echo -e "${COL_YELLOW}Warning!$COL_RESET "$1
 }
 
 function ok() {
