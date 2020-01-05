@@ -1,0 +1,27 @@
+Memory:
+
+    Memory Slots:
+
+      ECC: Disabled
+      Upgradeable Memory: No
+
+        BANK 0/DIMM0:
+
+          Size: 8 GB
+          Type: DDR3
+          Speed: 1600 MHz
+          Status: OK
+          Manufacturer: 0x80AD
+          Part Number: 0x484D54343147533641465238412D50422020
+          Serial Number: -
+
+        BANK 1/DIMM0:
+
+          Size: 8 GB
+          Type: DDR3
+          Speed: 1600 MHz
+          Status: OK
+          Manufacturer: 0x80AD
+          Part Number: 0x484D54343147533641465238412D50422020
+          Serial Number: -
+

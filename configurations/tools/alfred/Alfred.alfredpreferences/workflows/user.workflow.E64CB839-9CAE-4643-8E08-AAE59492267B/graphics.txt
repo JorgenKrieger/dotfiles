@@ -1,0 +1,40 @@
+Graphics/Displays:
+
+    Intel Iris Pro:
+
+      Chipset Model: Intel Iris Pro
+      Type: GPU
+      Bus: Built-In
+      VRAM (Dynamic, Max): 1536 MB
+      Vendor: Intel
+      Device ID: 0x0d26
+      Revision ID: 0x0008
+      Automatic Graphics Switching: Supported
+      gMux Version: 4.0.8 [3.2.8]
+      Metal: Supported, feature set macOS GPUFamily1 v4
+      Displays:
+        Color LCD:
+          Display Type: Built-In Retina LCD
+          Resolution: 2880 x 1800 Retina
+          Framebuffer Depth: 24-Bit Color (ARGB8888)
+          Main Display: Yes
+          Mirror: Off
+          Online: Yes
+          Automatically Adjust Brightness: No
+          Connection Type: Internal
+
+    NVIDIA GeForce GT 750M:
+
+      Chipset Model: NVIDIA GeForce GT 750M
+      Type: GPU
+      Bus: PCIe
+      PCIe Lane Width: x8
+      VRAM (Total): 2 GB
+      Vendor: NVIDIA (0x10de)
+      Device ID: 0x0fe9
+      Revision ID: 0x00a2
+      ROM Revision: 3776
+      Automatic Graphics Switching: Supported
+      gMux Version: 4.0.8 [3.2.8]
+      Metal: Supported, feature set macOS GPUFamily1 v4
+
