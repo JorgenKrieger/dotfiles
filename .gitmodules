@@ -16,3 +16,6 @@
 [submodule "spaceship-prompt"]
 	path = configurations/zsh/themes/spaceship-prompt
 	url = https://github.com/denysdovhan/spaceship-prompt
+[submodule "configurations/tools/alfred/Alfred.alfredpreferences/workflows/user.workflow.3C8D4C20-AB8E-4032-AA75-7F006D20E4A6/vendor/joetannenbaum/alfred-workflow"]
+	path = configurations/tools/alfred/Alfred.alfredpreferences/workflows/user.workflow.3C8D4C20-AB8E-4032-AA75-7F006D20E4A6/vendor/joetannenbaum/alfred-workflow
+	url = https://github.com/joetannenbaum/alfred-workflow

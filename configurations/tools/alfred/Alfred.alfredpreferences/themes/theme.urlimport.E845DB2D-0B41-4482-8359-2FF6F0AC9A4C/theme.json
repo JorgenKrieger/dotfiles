@@ -1,0 +1,61 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 6,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#FFFFFF76",
+        "font" : "System",
+        "color" : "#FFFFFF26"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#FEFFFFFF",
+        "font" : "System",
+        "color" : "#FEFFFF7F"
+      },
+      "backgroundSelected" : "#FFFFFF0C",
+      "text" : {
+        "size" : 20,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "System Light",
+        "color" : "#FFFFFF40"
+      },
+      "iconPaddingHorizontal" : 20,
+      "paddingVertical" : 21,
+      "iconSize" : 45
+    },
+    "search" : {
+      "paddingVertical" : 4,
+      "background" : "#00000000",
+      "spacing" : 24,
+      "text" : {
+        "size" : 34,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "System",
+        "color" : "#FFFFFFFF"
+      },
+      "backgroundSelected" : "#FDFFFD15"
+    },
+    "window" : {
+      "color" : "#000000B2",
+      "paddingHorizontal" : 25,
+      "width" : 559,
+      "borderPadding" : 0,
+      "borderColor" : "#0000007F",
+      "blur" : 40,
+      "roundness" : 5,
+      "paddingVertical" : 25
+    },
+    "credit" : "Jörgen Krieger",
+    "separator" : {
+      "color" : "#CBCBCB00",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#FEFFFF1F",
+      "thickness" : 2
+    },
+    "name" : "Noir"
+  }
+}
