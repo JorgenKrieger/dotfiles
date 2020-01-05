@@ -1,6 +1,3 @@
-# Set new path for zcompdump
-compinit -d $HOME/.cache/zsh/zcompdump-$ZSH_VERSION
-
 # Set oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/dotfiles/configurations/zsh
@@ -23,3 +20,4 @@ export LC_ALL=en_US.UTF-8
 
 # Aliases
 source $HOME/.aliases
+source $HOME/.functions

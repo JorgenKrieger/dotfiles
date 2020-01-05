@@ -1,0 +1,16 @@
+function docker-proxy() {
+  if (! docker stats --no-stream >/dev/null 2>&1); then
+    open /Applications/Docker.app
+
+    while (! docker stats --no-stream >/dev/null 2>&1); do
+      echo "Waiting for Docker to launch..."
+      sleep 1
+    done
+  fi
+
+  docker run -d -p 80:80 --name nginx -v /tmp/nginx:/etc/nginx/conf.d -t nginx
+  docker run -d --volumes-from nginx --name reverse-proxy \
+      -v /var/run/docker.sock:/tmp/docker.sock:ro \
+      -v $HOME/dotfiles/configurations/tools/docker/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl \
+      -t jwilder/docker-gen -notify-sighup nginx -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+}
