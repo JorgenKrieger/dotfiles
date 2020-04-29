@@ -4,17 +4,17 @@
 
     // Editor settings
     "editor.fontFamily": "'Operator Mono', Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 14,
+    "editor.fontSize": 16,
     "editor.fontWeight": "400",
     "editor.fontLigatures": true,
     "editor.letterSpacing": 0.2,
-    "editor.lineHeight": 22,
+    "editor.lineHeight": 32,
     
     "editor.cursorStyle": "line",
     "editor.cursorWidth": 5,
     "editor.cursorBlinking": "phase",
     "editor.insertSpaces": true,
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.renderWhitespace": "none",
     "editor.renderIndentGuides": false,
     "editor.quickSuggestions": false,
@@ -27,19 +27,21 @@
     },
     "files.useExperimentalFileWatcher": false,
 
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
 
     // Explorer settings
     "explorer.openEditors.visible": 0,
-    "workbench.tree.indent": 20,
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.tree.indent": 22,
+    "workbench.iconTheme": "ayu",
     "files.exclude": {
-        "node_modules/": true
+        "**/.pnp.js": true,
+        "**/.yarn/": true,
     },
 
     // Terminal settings
     "terminal.integrated.fontFamily": "'OperatorMono Nerd Font",
-    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.lineHeight": 1.25,
     "terminal.integrated.shell.osx": "/bin/zsh",
 
     // Entensions
@@ -65,18 +67,6 @@
 
     // Extension: ESLint
     "eslint.enable": true,
-
-    // Extension: Indent Rainbow
-    "indentRainbow.colors": [
-        "rgba(127, 127, 127, .05)",
-        "rgba(127, 127, 127, .1)",
-        "rgba(127, 127, 127, .15)",
-        "rgba(127, 127, 127, .2)",
-        "rgba(127, 127, 127, .15)",
-        "rgba(127, 127, 127, .1)",
-        "rgba(127, 127, 127, .05)",
-        "rgba(127, 127, 127, 0)"
-    ],
 
     // Extension: Bracket Pair Colorizer
     "bracketPairColorizer.showVerticalScopeLine": false,
@@ -113,5 +103,21 @@
         "lang-cfml",
         "cfml",
         "HTML (Eex)"
-    ]
+    ],
+
+    "customizeUI.activityBar": "bottom", // Options: wide, bottom
+    "customizeUI.titleBar": "frameless", // Options: inline, frameless
+    "window.titleBarStyle": "native",
+
+    "customizeUI.stylesheet": {
+        //".monaco-workbench, .monaco-workbench .sidebar, .monaco-workbench .activitybar, .monaco-workbench .titlebar, .monaco-workbench .monaco-list-rows, body": "background: transparent !important;"
+    },
+    "customizeUI.listRowHeight": 24,
+
+    "disableLigatures.mode": "Cursor",
+    "breadcrumbs.enabled": false,
+    "workbench.activityBar.visible": true,
+    "workbench.statusBar.visible": false
+
+
 }

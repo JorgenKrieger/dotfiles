@@ -14,3 +14,12 @@ function docker-proxy() {
       -v $HOME/dotfiles/configurations/tools/docker/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl \
       -t jwilder/docker-gen -notify-sighup nginx -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
 }
+
+function update() {
+  brew update
+  brew upgrade
+
+  mas upgrade
+
+  upgrade_oh_my_zsh
+}

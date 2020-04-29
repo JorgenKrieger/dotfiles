@@ -6,6 +6,8 @@ brew "mas"
 
 brew "git"
 brew "zsh"
+brew "zsh-syntax-highlighting"
+brew "the_silver_searcher"
 
 brew "bat"
 brew "tree"
@@ -16,17 +18,17 @@ brew "dockutil"
 brew "node"
 brew "python"
 
-brew "the_silver_searcher"
+brew "neovim"
+
 
 ## Cask
 cask "visual-studio-code"
+cask "vimr"
 cask "postman"
 cask "iterm2"
 cask "arduino"
 cask "sequel-pro"
 cask "dash"
-cask "drawio"
-
 cask "transmit"
 cask "hammerspoon"
 cask "docker"
@@ -47,7 +49,9 @@ cask "microsoft-edge-dev"
 cask "1password"
 cask "dropbox"
 
+cask "drawio"
 cask "sketch"
+cask "sketchpacks"
 cask "craftmanager"
 cask "adobe-creative-cloud"
 cask "imageoptim"
@@ -58,13 +62,10 @@ mas "Keynote", id: 409183694
 mas "Pages", id: 409201541
 mas "Numbers", id: 409203825
 
-mas "Bear", id: 1091189122
-
 mas "Spark - Email App by Readdle", id: 1176895641
+mas "Bear", id: 1091189122
 mas "Harvest", id: 506189836
 mas "Amphetamine", id: 937984704
-
-mas "GIPHY Capture. The GIF Maker", id: 668208984
 
 mas "AdBlock for Safari", id: 1402042596
 mas "Grammarly for Safari", id: 1462114288
@@ -74,3 +75,4 @@ mas "KakaoTalk", id: 869223134
 mas "LINE", id: 539883307
 
 mas "Endel: Focus, Sleep, Relax", id: 1484348796
+mas "GIPHY Capture. The GIF Maker", id: 668208984
