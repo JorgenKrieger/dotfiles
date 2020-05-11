@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 " Themes
 Plug 'dikiaap/minimalist'
+Plug 'lewis6991/moonlight.vim'
 Plug 'vim-airline/vim-airline-themes'
 
 " Navigation
@@ -13,14 +14,7 @@ Plug 'mileszs/ack.vim', { 'on' : 'Ack' }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind', 'NERDTree'] }
 
 " Languages
-Plug 'othree/html5.vim', { 'for': ['html', 'eruby'] }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'MaxMEllon/vim-jsx-pretty', { 'for': 'javascript' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'tpope/vim-haml', { 'for': ['haml', 'sass', 'scss'] }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'sheerun/vim-polyglot'
 
 " Misc
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -33,7 +27,7 @@ Plug 'ervandew/supertab'
 call plug#end()
 
 syntax enable
-colorscheme minimalist
+colorscheme moonlight
 set encoding=utf-8
 
 set showcmd                     " Display incomplete commands

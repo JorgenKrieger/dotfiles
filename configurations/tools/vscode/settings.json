@@ -1,9 +1,9 @@
 {
     // VSCode Theme
-    "workbench.colorTheme": "Monokai Pro",
+    "workbench.colorTheme": "Aurora X",
 
     // Editor settings
-    "editor.fontFamily": "'Operator Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "'Operator Mono Lig', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 16,
     "editor.fontWeight": "400",
     "editor.fontLigatures": true,
@@ -25,7 +25,6 @@
     "files.watcherExclude": {
         "**": true
     },
-    "files.useExperimentalFileWatcher": false,
 
     "window.zoomLevel": 1,
 
@@ -68,9 +67,6 @@
     // Extension: ESLint
     "eslint.enable": true,
 
-    // Extension: Bracket Pair Colorizer
-    "bracketPairColorizer.showVerticalScopeLine": false,
-
     // Extension: Vim
     "vim.history": 1000,
     "vim.hlsearch": true,
@@ -109,15 +105,10 @@
     "customizeUI.titleBar": "frameless", // Options: inline, frameless
     "window.titleBarStyle": "native",
 
-    "customizeUI.stylesheet": {
-        //".monaco-workbench, .monaco-workbench .sidebar, .monaco-workbench .activitybar, .monaco-workbench .titlebar, .monaco-workbench .monaco-list-rows, body": "background: transparent !important;"
-    },
     "customizeUI.listRowHeight": 24,
 
     "disableLigatures.mode": "Cursor",
     "breadcrumbs.enabled": false,
     "workbench.activityBar.visible": true,
     "workbench.statusBar.visible": false
-
-
 }

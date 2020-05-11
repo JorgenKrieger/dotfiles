@@ -12,6 +12,7 @@ brew "the_silver_searcher"
 brew "bat"
 brew "tree"
 brew "wget"
+brew "youtube-dl"
 
 brew "dockutil"
 
@@ -23,7 +24,6 @@ brew "neovim"
 
 ## Cask
 cask "visual-studio-code"
-cask "vimr"
 cask "postman"
 cask "iterm2"
 cask "arduino"
