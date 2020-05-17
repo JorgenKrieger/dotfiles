@@ -4,7 +4,7 @@ installer "Setting up Visual Studio Code"
 
 # Link user settings
 action "Linking settings"
-ln -nfs $PATH_CONFIGURATIONS/tools/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+ln -nfs ~/dotfiles/configurations/tools/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
 action "Installing plugins"
 

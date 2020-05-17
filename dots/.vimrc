@@ -53,7 +53,7 @@ set ignorecase                  " Searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
 "" Pasting
-set clipboard=uunnamed          " Enable OS clipboard to properly paste in to VIM buffer
+set clipboard=unnamed          " Enable OS clipboard to properly paste in to VIM buffer
 
 "" History
 set history=1000                " Remember last 1000 commands

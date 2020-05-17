@@ -1,20 +1,20 @@
 {
     // VSCode Theme
-    "workbench.colorTheme": "Monokai Pro",
+    "workbench.colorTheme": "Aurora X",
 
     // Editor settings
-    "editor.fontFamily": "'Operator Mono', Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 14,
+    "editor.fontFamily": "'Operator Mono Lig', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 16,
     "editor.fontWeight": "400",
     "editor.fontLigatures": true,
     "editor.letterSpacing": 0.2,
-    "editor.lineHeight": 22,
+    "editor.lineHeight": 30,
     
     "editor.cursorStyle": "line",
     "editor.cursorWidth": 5,
     "editor.cursorBlinking": "phase",
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
     "editor.renderWhitespace": "none",
     "editor.renderIndentGuides": false,
     "editor.quickSuggestions": false,
@@ -25,21 +25,22 @@
     "files.watcherExclude": {
         "**": true
     },
-    "files.useExperimentalFileWatcher": false,
 
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
 
+    
     // Explorer settings
     "explorer.openEditors.visible": 0,
     "workbench.tree.indent": 20,
-    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.iconTheme": "ayu",
     "files.exclude": {
         "node_modules/": true
     },
-
+    
     // Terminal settings
     "terminal.integrated.fontFamily": "'OperatorMono Nerd Font",
-    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.lineHeight": 1.25,
     "terminal.integrated.shell.osx": "/bin/zsh",
 
     // Entensions
@@ -65,21 +66,6 @@
 
     // Extension: ESLint
     "eslint.enable": true,
-
-    // Extension: Indent Rainbow
-    "indentRainbow.colors": [
-        "rgba(127, 127, 127, .05)",
-        "rgba(127, 127, 127, .1)",
-        "rgba(127, 127, 127, .15)",
-        "rgba(127, 127, 127, .2)",
-        "rgba(127, 127, 127, .15)",
-        "rgba(127, 127, 127, .1)",
-        "rgba(127, 127, 127, .05)",
-        "rgba(127, 127, 127, 0)"
-    ],
-
-    // Extension: Bracket Pair Colorizer
-    "bracketPairColorizer.showVerticalScopeLine": false,
 
     // Extension: Vim
     "vim.history": 1000,
@@ -113,5 +99,18 @@
         "lang-cfml",
         "cfml",
         "HTML (Eex)"
-    ]
+    ],
+
+    // Extension: Customize UI
+    "customizeUI.activityBar": "bottom",
+    "customizeUI.titleBar": "frameless",
+    "window.titleBarStyle": "native",
+    "customizeUI.listRowHeight": 24,
+
+    // Extension: Disable Ligatures
+    "disableLigatures.mode": "Cursor",
+
+    // Misc
+    "workbench.activityBar.visible": true,
+    "workbench.statusBar.visible": false
 }

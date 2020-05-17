@@ -12,15 +12,6 @@ if [ ! -d "$HOME/Desktop/Temp" ]; then
   mkdir $HOME/Desktop/Temp
 fi
 
-running "Allow ZSH to silently remove wildcard"
-/bin/zsh -c "setopt rmstarsilent"
-
-running "Setting crontab"
-crontab <<EOF
-30 9 * * 1-5 rm $HOME/Desktop/Temp/* $HOME/Desktop/Temp/.*
-EOF
-
-
 
 # ######################################
 # Screenshot folder

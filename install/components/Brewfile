@@ -33,6 +33,7 @@ cask "docker"
 
 cask "appcleaner"
 cask "notion"
+cask "typora"
 cask "alfred"
 cask "bartender"
 
@@ -51,6 +52,7 @@ cask "sketch"
 cask "craftmanager"
 cask "adobe-creative-cloud"
 cask "imageoptim"
+cask "sf-symbols"
 
 
 ## Mac App Store
