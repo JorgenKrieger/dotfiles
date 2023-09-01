@@ -1,0 +1,2 @@
+# Insert a balnk line between shell prompts
+add_newline = true
