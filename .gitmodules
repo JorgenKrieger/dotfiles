@@ -1,0 +1,12 @@
+[submodule "cli/bat/themes/Everblush"]
+	path = cli/bat/themes/Everblush
+	url = https://github.com/Everblush/bat
+[submodule "shell/zsh/oh-my-zsh"]
+	path = shell/zsh/oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "shell/bash/oh-my-bash"]
+	path = shell/bash/oh-my-bash
+	url = https://github.com/ohmybash/oh-my-bash
+[submodule "shell/zsh/custom/zsh-syntax-highlighting"]
+	path = shell/zsh/custom/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting

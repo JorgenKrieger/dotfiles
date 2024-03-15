@@ -1,0 +1,41 @@
+# Taps
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+
+# Cask
+# - Security
+cask "1password", args: { appdir: "~/Applications" }
+cask "1password-cli", args: { appdir: "~/Applications" }
+
+# - Communcation
+cask "discord", args: { appdir: "~/Applications" }
+cask "skype", args: { appdir: "~/Applications" }
+cask "whatsapp", args: { appdir: "~/Applications" }
+
+# - Design
+cask "figma-beta", args: { appdir: "~/Applications" }
+cask "sf-symbols", args: { appdir: "~/Applications" }
+cask "imageoptim", args: { appdir: "~/Applications" }
+# -- Fonts
+cask "font-sf-compact"
+cask "font-sf-mono"
+cask "font-sf-mono-for-powerline"
+cask "font-sf-pro"
+
+# - Development
+cask "hammerspoon", args: { appdir: "~/Applications" }
+cask "iterm2", args: { appdir: "~/Applications" }
+cask "visual-studio-code", args: { appdir: "~/Applications" }
+cask "postman", args: { appdir: "~/Applications" }
+
+# - MacOS Improvements
+cask "appcleaner", args: { appdir: "~/Applications" }
+cask "bartender", args: { appdir: "~/Applications" }
+cask "hazel", args: { appdir: "~/Applications" }
+cask "raycast", args: { appdir: "~/Applications" }
+
+# - General productivity
+cask "arc", args: { appdir: "~/Applications" }
+cask "notion", args: { appdir: "~/Applications" }
+cask "notion-calendar", args: { appdir: "~/Applications" }
+cask "google-drive", args: { appdir: "~/Applications" }
