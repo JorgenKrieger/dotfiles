@@ -25,7 +25,7 @@ os() {
 
 		echo "Linux"
 
-	elif [[ "$OSTYPE" == "darwin" ]]; then
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
 		# Mac
 		echo "Mac"
 	fi

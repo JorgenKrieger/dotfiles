@@ -29,4 +29,4 @@ vim.opt.colorcolumn = "80"
 vim.opt.title = true
 
 -- Lightline theme
-vim.api.nvim_set_var("lightline", { colorscheme = "one" })
+vim.api.nvim_set_var("lightline", { colorscheme = "everblush" })

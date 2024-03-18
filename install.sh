@@ -68,6 +68,37 @@ if [ ! -d $HOME/.config ]; then
 	mkdir $HOME/.config
 fi
 
+if [ "$ignore_symlinks" = false ]; then
+	yellow "\nSymlinking..."
+	for folder in ./cli/*; do
+		echo -e "$(gray ">") $(basename "$folder") -> $(blue "$HOME/.config/$(basename "$folder")")"
+		ln -nfs $(realpath "$folder") $HOME/.config/
+	done
+
+	# Global gitignore
+	echo -e "$(gray ">") ".gitignore_global" -> $(blue "$HOME/.config/git/.gitignore_global")"
+	ls -nfs $(realpath ./git/.gitignore_global) $HOME/.config/git/.gitignore_global
+
+	# Shell
+	# - ZSH config
+	mkdir -p $HOME/.config/zsh
+	ln -nfs $(realpath shell/zsh/.zshrc) $HOME/.zshrc
+	ln -nfs $(realpath shell/zsh/oh-my-zsh) $HOME/.config/zsh/
+	mkdir -p $HOME/.config/zsh/custom/plugins
+	ln -nfs $(realpath shell/zsh/custom/zsh-syntax-highlighting) $HOME/.config/zsh/custom/plugins/
+
+	# - Bash config
+	mkdir -p $HOME/.config/bash
+	ln -nfs $(realpath shell/bash/.bashrc) $HOME/.bashrc
+	ln -nfs $(realpath shell/bash/oh-my-bash) $HOME/.config/
+
+	# - Generic shell config
+	ln -nfs $(realpath shell/config.d) $HOME/.config/
+
+	# - Starship config
+	ln -nfs $(realpath shell/starship.toml) $HOME/.config/
+fi
+
 if [ "$ignore_brew" = false ]; then
 	# - Install Homebrew
 	if [[ $(command -v brew) == "" ]]; then
@@ -113,11 +144,21 @@ if [[ $(os) == "Mac" ]]; then
 		brew bundle --file=macos/Brewfile
 	fi
 
+	# Symlinks
+	if [ "$ignore_symlinks" = false ]; then
+		ln -nfs $(realpath macos/.hammerspoon) $HOME/.config/hammerspoon	
+	fi
+
 	# Set DNS
 	# Using helper functions for cleaner variable storage
 	if [ "$ignore_dns" = false ]; then
 		set_dns
 	fi
+
+	# Hammerspoon
+	yellow "Preparing Hammerspoon..."
+	defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
+	ln -nfs $PWD/macos/.hammerspoon $HOME/.config/hammerspoon
 
 	# Add Dan Pollock's hosts blacklist
 	if [ "$ignore_hosts" = false ]; then

@@ -1,5 +1,5 @@
 # Paths
-export OSH="$HOME/.config/shell/bash/oh-my-bash"
+export OSH="$HOME/.config/oh-my-bash"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH_DOTFILES="$HOME/jorgenkrieger/dotfiles"
 
@@ -33,7 +33,7 @@ plugins=(
 )
 
 # Load seperate config files
-for conf in "$XDG_CONFIG_HOME/shell/config.d/"*.sh; do
+for conf in "$XDG_CONFIG_HOME/config.d/"*.sh; do
 	source "${conf}"
 done
 unset conf
@@ -42,4 +42,5 @@ unset conf
 source "$OSH"/oh-my-bash.sh
 
 # Load starship theme
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
 eval "$(starship init bash)"
