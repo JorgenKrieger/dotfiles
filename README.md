@@ -14,7 +14,7 @@
 Depending on the system, some of the installation steps might differ.
 
 <details>
-<summary><h3>Mac OS</h3></summary>
+<summary><strong>Mac OS</strong></summary>
 Before being able to clone the repo, we first need to setup git.
 
 ```sh
@@ -32,7 +32,7 @@ After cloning the repo, run the install scripts.
 
 </details>
 <details>
-	<summary><h3>WSL</h3></summary>
+	<summary><strong>WSL</strong></summary>
 
 Start off with cloning the repository.
 
@@ -42,10 +42,8 @@ git clone https://github.com/JorgenKrieger/dotfiles.git $HOME/jorgenkrieger/dotf
 ```
 
 </details>
-<details>
-	<summary><h3>Linux</h3></summary>
-</details>
 
 ## Essential knowledge
 
-> ** Warning** Although dotfiles contain most preferences, not all preferences are equally sharable (think security settings). That's why the dotfiles repository should only contain shareble data and be symlinked into the system.
+> [!WARNING]
+> Although dotfiles contain most preferences, not all preferences are equally sharable (think security settings). That's why the dotfiles repository should only contain shareble data and be symlinked into the system.

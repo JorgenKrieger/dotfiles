@@ -1,12 +1,13 @@
 local hotkey = require "hs.hotkey"
-local Keys = require "keys"
+local keys = require "keys"
+local log = hs.logger.new("WinManage", "debug")
 
 -- Disable animation
 hs.window.animationDuration = 0
 
 -- Define positions
 local positions = {
-    ["FullScreen"] = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 },
+    ["Fullscreen"] = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 },
     ["Top 50%"] =    { x = 0.00, y = 0.00, w = 1.00, h = 0.50 },
     ["Bottom 50%"] = { x = 0.00, y = 0.50, w = 1.00, h = 0.50 },
 
