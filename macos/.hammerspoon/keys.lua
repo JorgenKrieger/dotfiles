@@ -8,7 +8,6 @@ Keys = {
         ["Left 50%"] = {{ "alt", "cmd" }, "Left" },
         ["Left 67%"] = {{ "ctrl", "alt", "shift" }, "Left" },
 
-
         ["Right 33%"] = {{ "ctrl", "alt" }, "Right" },
         ["Right 50%"] = {{ "alt", "cmd" }, "Right" },
         ["Right 67%"] = {{ "ctrl", "alt", "shift" }, "Right" },

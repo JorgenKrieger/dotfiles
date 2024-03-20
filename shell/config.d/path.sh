@@ -12,4 +12,7 @@ fi
 export PATH=$HOME/.nodenv/shims:$PATH
 
 # Pnpm
-export PATH=$Home/Libarary/pnpm:$PATH
+export PATH=$HOME/Libarary/pnpm:$PATH
+
+# Composer
+export PATH=$HOME/.config/composer/vendor/bin:$PATH

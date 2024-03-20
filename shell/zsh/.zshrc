@@ -16,3 +16,10 @@ source $ZSH/oh-my-zsh.sh
 # Load starship theme
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
 eval "$(starship init zsh)"
+# pnpm
+export PNPM_HOME="/Users/jorgen/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
