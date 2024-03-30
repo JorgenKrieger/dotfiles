@@ -13,6 +13,10 @@ export PATH=$HOME/.nodenv/shims:$PATH
 
 # Pnpm
 export PATH=$HOME/Libarary/pnpm:$PATH
+export PNPM_HOME="$HOME/Library/pnpm"
+
+# PostgresQL 16
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Composer
 export PATH=$HOME/.config/composer/vendor/bin:$PATH
