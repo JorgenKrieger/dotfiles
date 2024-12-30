@@ -12,7 +12,7 @@ fi
 export PATH=$HOME/.nodenv/shims:$PATH
 
 # Pnpm
-export PATH=$HOME/Libarary/pnpm:$PATH
+export PATH=$HOME/Library/pnpm:$PATH
 export PNPM_HOME="$HOME/Library/pnpm"
 
 # PostgresQL 16

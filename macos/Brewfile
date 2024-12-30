@@ -1,21 +1,21 @@
 # Taps
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 
 # Cask
 # - Security
-cask "1password", args: { appdir: "~/Applications" }
-cask "1password-cli", args: { appdir: "~/Applications" }
+cask "1password"
+cask "1password-cli"
+cask "cloudflare-warp"
 
 # - Communcation
-cask "discord", args: { appdir: "~/Applications" }
-cask "skype", args: { appdir: "~/Applications" }
-cask "whatsapp", args: { appdir: "~/Applications" }
+cask "discord"
+cask "skype"
+cask "whatsapp"
 
 # - Design
-cask "figma-beta", args: { appdir: "~/Applications" }
-cask "sf-symbols", args: { appdir: "~/Applications" }
-cask "imageoptim", args: { appdir: "~/Applications" }
+cask "figma-beta"
+cask "sf-symbols"
+cask "imageoptim"
 # -- Fonts
 cask "font-sf-compact"
 cask "font-sf-mono"
@@ -23,19 +23,20 @@ cask "font-sf-mono-for-powerline"
 cask "font-sf-pro"
 
 # - Development
-cask "hammerspoon", args: { appdir: "~/Applications" }
-cask "iterm2", args: { appdir: "~/Applications" }
-cask "visual-studio-code", args: { appdir: "~/Applications" }
-cask "postman", args: { appdir: "~/Applications" }
+cask "hammerspoon"
+cask "ghostty"
+cask "webstorm"
+cask "postman"
 
 # - MacOS Improvements
-cask "appcleaner", args: { appdir: "~/Applications" }
-cask "bartender", args: { appdir: "~/Applications" }
-cask "hazel", args: { appdir: "~/Applications" }
-cask "raycast", args: { appdir: "~/Applications" }
+cask "appcleaner"
+cask "bartender"
+cask "hazel"
+cask "raycast"
+cask "mos"
 
 # - General productivity
-cask "arc", args: { appdir: "~/Applications" }
-cask "notion", args: { appdir: "~/Applications" }
-cask "notion-calendar", args: { appdir: "~/Applications" }
-cask "google-drive", args: { appdir: "~/Applications" }
+cask "arc"
+cask "notion"
+cask "notion-calendar"
+cask "google-drive"

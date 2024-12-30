@@ -1,6 +1,6 @@
 MIT License
 
-**Copyright (c) 2023, Jörgen Krieger - https://github.com/JorgenKrieger**
+**Copyright (c) 2024, Jörgen Krieger - https://github.com/JorgenKrieger**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

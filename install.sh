@@ -147,6 +147,7 @@ if [[ $(os) == "Mac" ]]; then
 	# Symlinks
 	if [ "$ignore_symlinks" = false ]; then
 		ln -nfs $(realpath macos/.hammerspoon) $HOME/.config/hammerspoon	
+        ln -nfs $(realpath macos/ghostty/config) $HOME/Library/Application\ Support/com.mitchellh.ghostty/config
 	fi
 
 	# Set DNS

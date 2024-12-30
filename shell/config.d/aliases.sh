@@ -109,4 +109,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
 	# Hugo
 	alias hs='hugo server --bind $(ipconfig getifaddr en0) --baseURL "http://`ipconfig getifaddr en0`"'
+
+    # WebStorm
+    alias webstorm="open -na WebStorm.app"
+
+    # Bat with color scheme
+    alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark || echo OneHalfLight)"
 fi
