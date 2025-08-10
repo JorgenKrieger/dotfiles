@@ -1,0 +1,71 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Dotfiles executable
+# 
+# This is the main entry point for the dotfiles executable.
+# 
+# Usage:
+#   dotfiles [command]
+# 
+# Commands:
+#   install  Install dotfiles
+#   update   Update dotfiles
+#   doctor   Check dotfiles installation
+#   help     Show this help message
+#   quit     Exit the script
+# 
+# ──────────────────────────────────────────────────────────────────────
+
+# Fail fast, fail loud
+set -euo pipefail 2>/dev/null || set -euo
+(setopt PIPE_FAIL 2>/dev/null || true)
+
+# --- Resolve repo root
+ROOT_DIR="${0:A:h}"
+LIB_DIR="$ROOT_DIR/lib/"
+
+# --- Helper functions
+run() { 
+    if [[ -f "$LIB_DIR/$@" ]]; then
+        source "$LIB_DIR/$@" 
+    else
+        die "Unknown command: $@"
+    fi
+}
+
+die() { 
+    gum style --foreground 196 --bold "❌ $*"
+    return 1
+}
+
+# --- Ensure Homebrew exists (only needed on a virgin Mac)
+if ! command -v brew >/dev/null; then
+    echo "🛠️ Installing Homebrew..."
+
+    # Run the Homebrew installer non-interactively without prompting for passwords
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    # Add Homebrew to path for the current shell
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# --- Ensure gum exists for CLI experience
+if ! command -v gum >/dev/null; then
+    echo "✨ Installing gum for interactive prompts"
+    brew install gum
+fi
+
+# --- No args -> interactive menu (gum)
+if (( $# == 0 )); then
+    local choice
+    choice=$(gum choose --header "What do you want to do?" install update doctor help quit)
+    [[ $choice == quit ]] && return 0
+    [[ $choice == help ]] && choice=help
+    run $choice
+    return
+fi
+
+# --- Args present -> direct dispatch
+subcmd=$1; shift
+run $subcmd

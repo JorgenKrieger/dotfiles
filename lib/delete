@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Script: Remove dotfiles
+#
+# This script will remove all dotfiles from the user's home directory.
+#
+# ──────────────────────────────────────────────────────────────────────

@@ -1,0 +1,101 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Set DNS servers on macOS with a gum UI.
+#   1. choose network service(s)      (Wi‑Fi, Ethernet, …)
+#   2. choose predefined DNS profile  (Cloudflare etc.) or Custom/Reset
+# Requires: gum, sudo
+# ──────────────────────────────────────────────────────────────────────
+
+# ---Sanity checks
+command -v gum >/dev/null 2>&1 || {
+  print -u2 "❌ gum not found. Install with: brew install gum"
+  return 1
+}
+
+sudo -v || { print -u2 "❌ Need sudo privileges"; return 1; }
+
+# --- STEP 1: Choose network service(s)
+services=($(networksetup -listallnetworkservices | tail -n +2))
+[[ ${#services[@]} -eq 0 ]] && { print -u2 "No network services found."; return 1; }
+
+service_choice=$(printf '%s\n' "${services[@]}" \
+                | gum choose --no-limit \
+                    --header "Select network service(s) to configure DNS:")
+
+[[ -z $service_choice ]] && { print "Aborted."; return 0; }
+
+# --- STEP 2: Choose DNS profile
+profile=$(gum choose \
+	--header "Pick DNS profile:" \
+	"Cloudflare →" \
+	"Google (8.8.8.8)" \
+	"OpenDNS (208.67.222.222)" \
+	"Quad9 (9.9.9.9)" \
+	"Custom" \
+	"Reset (DHCP)")
+
+[[ -z $profile ]] && { print "Aborted."; return 0 }
+
+if [[ $profile == "Cloudflare →" ]]; then
+	profile=$(gum choose \
+		--header "Choose Cloudflare variant:" \
+		"Standard  (1.1.1.1)" \
+		"Malware   (1.1.1.2)" \
+		"Family    (1.1.1.3)")
+	[[ -z $profile ]] && { print "Aborted."; return 0 }
+fi
+
+# ── Map profile → list of DNS IPs (v4 + v6)
+case $profile in
+  "Standard"* )
+    dns=(
+      1.1.1.1 1.0.0.1
+      2606:4700:4700::1111 2606:4700:4700::1001
+    ) ;;                                                   # :contentReference[oaicite:0]{index=0}
+  "Malware"* )
+    dns=(
+      1.1.1.2 1.0.0.2
+      2606:4700:4700::1112 2606:4700:4700::1002
+    ) ;;                                                   # :contentReference[oaicite:1]{index=1}
+  "Family"* )
+    dns=(
+      1.1.1.3 1.0.0.3
+      2606:4700:4700::1113 2606:4700:4700::1003
+    ) ;;                                                   # :contentReference[oaicite:2]{index=2}
+  Google* )
+    dns=(
+      8.8.8.8 8.8.4.4
+      2001:4860:4860::8888 2001:4860:4860::8844
+    ) ;;                                                   # :contentReference[oaicite:3]{index=3}
+  OpenDNS* )
+    dns=(
+      208.67.222.222 208.67.220.220
+      2620:119:35::35 2620:119:53::53
+    ) ;;                                                   # :contentReference[oaicite:4]{index=4}
+  Quad9* )
+    dns=(
+      9.9.9.9 149.112.112.112
+      2620:fe::fe 2620:fe::9
+    ) ;;                                                   # :contentReference[oaicite:5]{index=5}
+  "Reset (DHCP)" )
+    dns=() ;;
+  Custom )
+    ips=$(gum input --placeholder \
+      "Comma‑separated DNS servers (IPv4 or IPv6)")
+    [[ -z $ips ]] && { print "Aborted."; return 0 }
+    dns=("${(@s:,:)ips}") ;;
+esac
+
+# --- Apply to each selected service
+for svc in ${(f)service_choice}; do
+  if (( ${#dns} == 0 )); then
+    sudo networksetup -setdnsservers "$svc" empty
+    print "[$svc] ➜ DNS reset to DHCP defaults"
+  else
+    sudo networksetup -setdnsservers "$svc" "${dns[@]}"
+    print "[$svc] ➜ DNS set to: ${dns[*]}"
+  fi
+done
+
+print "✅  DNS configuration complete."

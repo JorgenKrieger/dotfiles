@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Script: Update
+#
+# This script will update the dotfiles repository.
+#
+# ──────────────────────────────────────────────────────────────────────
+
+# --- 1. Pull latest dotfiles safely
+print "🔄  Updating dotfiles repository..."
+
+if [[ -n "$(git status --porcelain)" ]]; then
+	print "⚠️  Uncommitted changes detected."
+	if gum confirm "Stash local changes before pulling?"; then
+		git stash push -m "dotfiles‑auto‑stash $(date '+%F %T')"
+	else
+		print "🚫  Aborting update."; return 1
+	fi
+fi
+
+git pull --rebase --autostash
+
+# --- 2. Re-link dotfiles (idempotent)
+print "\n🔗  Re-linking dotfiles..."
+
+# --- 3. Sync Homebrew (optional)
+if gum confirm "Run brew bundle to match Brewfile?"; then
+	brew bundle --file="$ROOT_DIR/Brewfile"
+fi
+
+# --- 4. Re-run any post-install hooks
+# "$SCRIPT_DIR/shell"
+# "$SCRIPT_DIR/macos"

@@ -1,20 +1,20 @@
-<h1 align="center">Dotfiles</h1>
-<h4 align="center">💻 Automated configuration, preferences and software installer for macOS, linux and WSL.</h4>
-<p align="center">This dotfiles setup has been created for personal use across several devices.</p>
+![Dotfiles](/.github/header.png)
 
-<h3 align="center">Tested on:</h3>
-<div align="center">
-	<img src="https://img.shields.io/badge/-Sequoia-F5F5F7.svg?style=for-the-badge&colorA=FAFAFC&logoColor=323232&logo=apple" />
-	<img src="https://img.shields.io/badge/-WSL_2-F5F5F7.svg?style=for-the-badge&colorB=393939&colorA=4D4D4D&logoColor=CCCCCC&logo=windowsterminal" />
-	<img src="https://img.shields.io/badge/-Ubuntu_22.04-E95420.svg?style=for-the-badge&colorB=C33909&colorA=E95420&logoColor=FFFFFF&logo=ubuntu" />
-</div>
+Personal dotfiles for macOS, configured for my daily workflow.  
+Feel free to use them as inspiration for your own setup.
 
-## Install
+> [!NOTE]  
+> These dotfiles are tailored for my personal use. They may need adjustments to work for your environment.
 
-Depending on the system, some of the installation steps might differ.
+## 📚 Essential knowledge
 
-<details>
-<summary><strong>Mac OS</strong></summary>
+> [!WARNING]
+> Dotfiles should only contain **shareable** configuration.  
+> System- or security-sensitive settings (e.g., private SSH keys, tokens) are **not** included here.  
+> All files are meant to be symlinked into the system.
+
+## 🚀 Install
+
 Before being able to clone the repo, we first need to setup git.
 
 ```sh
@@ -26,25 +26,18 @@ Next, clone this repository. Personal preference is to clone this into a directo
 ```sh
 mkdir -p $HOME/jorgenkrieger
 git clone https://github.com/JorgenKrieger/dotfiles.git $HOME/jorgenkrieger/dotfiles
+cd $HOME/jorgenkrieger/dotfiles
+git submodule update --init --recursive
+./dotfiles
 ```
 
 After cloning the repo, run the install scripts.
 
-</details>
-<details>
-	<summary><strong>WSL</strong></summary>
+## What's included?
 
-Start off with cloning the repository.
-
-```sh
-mkdir -p $HOME/jorgenkrieger
-git clone https://github.com/JorgenKrieger/dotfiles.git $HOME/jorgenkrieger/dotfiles
-```
-
-</details>
-
-## Essential knowledge
-
-> [!WARNING]
-> Although dotfiles contain most preferences, not all preferences are equally sharable (think security settings). That's
-> why the dotfiles repository should only contain shareble data and be symlinked into the system.
+| Category        | Apps                                                                                                                                                                                                                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 💻 CLI          | [`zsh`](https://www.zsh.org), [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting), [`git`](https://git-scm.com), [`nvm`](https://github.com/nvm-sh/nvm), [`homebrew`](https://brew.sh)                                                                             |
+| 🎨 Design       | [`figma`](https://www.figma.com), [`touchdesigner`](https://www.derivative.ca)                                                                                                                                                                                                                   |
+| 🛠️ Developments | [`dbngin`](https://dbngin.com/), [`ghostty`](https://ghostty.org/), [`herd`](https://herd.laravel.com/), [`orbstack`](https://orbstack.dev/), [`phpstorm`](https://www.jetbrains.com/phpstorm/), [`postman`](https://www.postman.com/), [`trae`](https://www.trae.ai/)                           |
+| ✨ Productivity | [`1password`](https://1password.com), [`arc`](https://arc.net), [`discord`](https://discord.com), [`hammerspoon`](https://www.hammerspoon.org), [`hazel`](https://www.hazelapp.com), [`mos`](https://mos.crowerapps.com), [`notion`](https://www.notion.so), [`raycast`](https://www.raycast.so) |

@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────────────────────────────
+
+# Global gitignore
+ls -nfs $(realpath "$ROOT_DIR/git/.gitignore_global") $HOME/.config/git/.gitignore_global 
+
+# Shell
+# - Create necessary directories
+mkdir -p "$HOME/.config/zsh"
+mkdir -p "$HOME/.config/zsh/custom"
+mkdir -p "$HOME/.config/zsh/config.d"
+
+# - Symlink zsh files
+ln -sf "$ROOT_DIR/zsh/.zshrc" "$HOME/.zshrc"
+ln -sf "$ROOT_DIR/zsh/config.d"/* "$HOME/.config/zsh/config.d/"
+ln -sf "$ROOT_DIR/zsh/starship.toml" "$HOME/.config/starship.toml"
+
+# - Symlink other config files
+ln -sf "$ROOT_DIR/git/.gitignore_global" "$HOME/.gitignore_global"
+ln -sf "$ROOT_DIR/bat/config" "$HOME/.config/bat/config"
+ln -sf "$ROOT_DIR/ghostty/config" "$HOME/.config/ghostty/config"

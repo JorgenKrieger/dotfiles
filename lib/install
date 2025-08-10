@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Script: Install
+#
+# This script will install the dotfiles on the user's machine.
+#
+# Requires: gum
+#
+# ──────────────────────────────────────────────────────────────────────
+
+# --- Decide on what parts to install
+local choice
+choice=$(gum choose --no-limit --selected="*" --header "What modules do you wish to install?" Homebrew DNS "Hosts file" Symlinks "macOS defaults" "Personal folders")
+
+# --- 1. Install brews
+if echo "$choice" | grep -q "Homebrew"; then
+	echo "- 📦 Installing brew bundle"
+	brew bundle
+fi
+
+# --- 2. DNS
+if echo "$choice" | grep -q "DNS"; then
+	echo "- 🛜 Configuring DNS"
+	source $SCRIPT_DIR/partials/dns
+fi
+
+# --- 3. Hosts file
+if echo "$choice" | grep -q "Hosts file"; then
+	echo "- ❌ Preparing hosts blacklist"
+	source $SCRIPT_DIR/partials/hosts
+fi
+
+# --- 4. Symlinks
+if echo "$choice" | grep -q "Symlinks"; then
+	echo "- 🔗 Symlinks"
+	source $SCRIPT_DIR/partials/symlinks
+fi
+
+# --- 5. macOS defaults
+if echo "$choice" | grep -q "macOS defaults"; then
+	echo "- 💻 macOS defaults"
+	source $SCRIPT_DIR/partials/macOS-defaults
+fi
+
+# --- 6. Personal folders
+if echo "$choice" | grep -q "Personal folders"; then
+	echo "- 📂 Creating personal folders"
+	mkdir -p "$HOME/Desktop/Temp"
+	mkdir -p "$HOME/Desktop/Screenshots"
+	mkdir -p "$HOME/projects"
+
+	echo "- 📸 Setting screenshot location"
+	defaults write com.apple.screencapture location ~/Desktop/Screenshots
+fi

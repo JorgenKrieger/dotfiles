@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Requires: sudo
+# ──────────────────────────────────────────────────────────────────────
+
+HOSTS_URL="https://someonewhocares.org/hosts/hosts"
+TMP_FILE="/tmp/hosts.downloaded"
+FINAL_FILE="/etc/hosts"
+
+echo "⬇️  Downloading latest hosts file..."
+curl -fsSL "$HOSTS_URL" -o "$TMP_FILE"
+
+# Check if CUSTOM HOSTS block exists
+if grep -q "# CUSTOM HOSTS START" "$FINAL_FILE" && grep -q "# CUSTOM HOSTS END" "$FINAL_FILE"; then
+	echo "🔍 Found CUSTOM HOSTS block. Preserving it."
+
+	# Extract everything between the markers
+	CUSTOM_BLOCK=$(awk '/# CUSTOM HOSTS START/{flag=1;print;next}/# CUSTOM HOSTS END/{print;flag=0}flag' "$FINAL_FILE")
+
+	# Write final hosts file
+	{
+		echo "$CUSTOM_BLOCK"
+		echo
+		cat "$TMP_FILE"
+	} | sudo tee "$FINAL_FILE" > /dev/null
+
+	echo "✅ /etc/hosts updated (custom block preserved)."
+
+else
+	echo "⚠️ No CUSTOM HOSTS block found. Replacing entire /etc/hosts."
+	sudo cp "$TMP_FILE" "$FINAL_FILE"
+	echo "✅ /etc/hosts replaced completely."
+fi
