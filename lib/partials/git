@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Sets up the defaults for git
+#
+# Requires: gum, git
+# ──────────────────────────────────────────────────────────────────────
+
+# ---Sanity checks
+command -v gum >/dev/null 2>&1 || {
+  print -u2 "❌ gum not found. Install with: brew install gum"
+  return 1
+}
+
+command -v git >/dev/null 2>&1 || {
+  print -u2 "❌ git not found. Install with: brew install git"
+  return 1
+}
+
+# ──────────────────────────────────────────────────────────────────────
+
+local GIT_USERNAME
+GIT_USERNAME=$(gum input --prompt "GitHub username: ")
+
+local GIT_EMAIL
+GIT_EMAIL=$(gum input --prompt "GitHub email: ")
+
+# User
+git config --global user.name $GIT_USERNAME
+git config --global user.email $GIT_EMAIL
+
+# Color
+git config --global color.diff always
+
+# Push
+git config --global push.default current
+
+# Pull
+git config --global pull.default current
+git config --global pull.ff only
+
+# Merge
+git config --global merge.ff only
+git config --global merge.conflictstyle diff3
+
+# Checkout
+git config --global checkout.defaultRemote origin
+
+# Init
+git config --global init.defaultBranch origin
+
+# Core
+mkdir -p "$HOME/.config/git"
+ln -nfs "$ROOT_DIR/git/.gitignore_global" "$HOME/.config/git/.gitignore_global"
+git config --global core.excludesfile "$HOME/.config/git/.gitignore_global"

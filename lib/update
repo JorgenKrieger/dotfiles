@@ -1,0 +1,80 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Dotfiles update
+#
+# Updates the dotfiles repository and its components
+# ──────────────────────────────────────────────────────────────────────
+
+gum style --bold --foreground 212 "Updating dotfiles..."
+
+# --- Update dotfiles repository
+echo "📦 Updating dotfiles repository"
+
+# Store current directory
+local current_dir=$(pwd)
+
+# Change to repository root
+(cd "$ROOT_DIR" && git pull)
+
+# Check for uncommitted changes
+if ! git diff-index --quiet HEAD --; then
+    log_warning "You have uncommitted changes in your dotfiles repository."
+    if ! gum confirm "Continue with update? (This won't affect your local changes but may cause conflicts)"; then
+        echo "Update aborted."
+        cd "$current_dir"
+        return 1
+    fi
+fi
+
+# Try to pull, but handle potential conflicts
+if ! git pull --ff-only; then
+    log_warning "Cannot fast-forward merge. You may have diverging changes."
+    echo "Options:"
+    local git_action=$(gum choose "Stash and reapply local changes" "Merge (may cause conflicts)" "Abort update")
+
+    case "$git_action" in
+        "Stash and reapply local changes")
+            git stash
+            git pull
+            git stash pop
+            ;;
+        "Merge (may cause conflicts)")
+            git pull
+            ;;
+        *)
+            echo "Update aborted."
+            cd "$current_dir"
+            return 1
+            ;;
+    esac
+fi
+
+# Return to original directory
+cd "$current_dir"
+
+# --- Update Homebrew packages
+if command -v brew >/dev/null; then
+    echo "📦 Updating Homebrew packages"
+    brew update
+    brew upgrade
+    brew bundle --file="$ROOT_DIR/Brewfile"
+    brew cleanup
+fi
+
+# --- Update symlinks
+echo "🔗 Ensuring symlinks are up to date"
+source "$LIB_DIR/partials/symlinks"
+
+# --- Update macOS defaults if needed
+gum confirm "Do you want to update macOS defaults?" && {
+    echo "💻 Updating macOS defaults"
+    source "$LIB_DIR/partials/macOS-defaults"
+}
+
+# --- Run doctor to verify everything is working
+echo "🩺 Running doctor to verify installation"
+source "$LIB_DIR/doctor"
+
+log_success "Dotfiles update complete!"
+

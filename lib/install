@@ -1,0 +1,47 @@
+#!/usr/bin/env zsh
+
+# --- Decide on what parts to install
+local choice
+choice=$(gum choose --no-limit --selected="*" --header "What modules do you wish to install?" Homebrew Git DNS "Hosts file" Symlinks "macOS defaults" "Personal folders")
+
+# --- 1. Install brews
+if echo "$choice" | grep -q "Homebrew"; then
+    echo "- 📦 Installing brew bundle"
+    brew bundle --file $ROOT_DIR/Brewfile
+fi
+
+# --- 2. Git
+if echo "$choice" | grep -q "Git"; then
+    echo "- 🧑🏻‍💻 Preparing git"
+    run partials/git
+fi
+
+# --- 3. DNS
+if echo "$choice" | grep -q "DNS"; then
+    echo "- 🛜 Configuring DNS"
+    run partials/dns
+fi
+
+# --- 4. Host file
+if echo "$choice" | grep -q "DNS"; then
+    echo "- ❌ Preparing hosts blacklist"
+fi
+
+# --- 5. Symlinks
+if echo "$choice" | grep -q "Symlinks"; then
+    echo "- 🔗 Symlinks"
+    run partials/symlinks
+fi
+
+# --- 6. macOS defaults
+if echo "$choice" | grep -q "macOS defaults"; then
+    echo "- 💻 macOS defaults"
+    run partials/macOS-defaults
+fi
+
+# --- 7. Personal folders
+if echo "$choice" | grep -q "Personal folders"; then
+    echo "- 📁 Personal folders"
+    mkdir -p "$HOME/Desktop/Temp"
+    mkdir -p "$HOME/Desktop/Screenshots"
+fi

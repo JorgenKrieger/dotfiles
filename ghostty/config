@@ -1,0 +1,22 @@
+window-padding-x = 20
+window-padding-y = 20
+window-padding-balance = true
+window-padding-color = extend
+
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+
+font-family = GeistMono NFM
+font-family-bold = GeistMono NFM Black
+font-size = 15
+
+cursor-style = block
+
+theme = light:Terminal Basic,dark:Apple System Colors
+background-opacity = 0.96
+background-blur-radius = 25
+
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = white
+macos-icon-screen-color = black

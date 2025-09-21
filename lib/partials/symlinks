@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+# Shell
+# - Create necassary directories
+mkdir -p "$HOME/.config/zsh/config.d"
+mkdir -p "$HOME/.config/ghostty"
+mkdir -p "$HOME/.config/bat"
+mkdir -p "$HOME/bin"
+
+# - Symlink zsh files
+ln -nsf "$ROOT_DIR/zsh/.zlogin" "$HOME/.zlogin"
+ln -nsf "$ROOT_DIR/zsh/.zprofile" "$HOME/.zprofile"
+ln -nsf "$ROOT_DIR/zsh/.zshenv" "$HOME/.zshenv"
+ln -nsf "$ROOT_DIR/zsh/.zshrc" "$HOME/.zshrc"
+ln -nsf "$ROOT_DIR/zsh/_init.sh" "$HOME/.config/zsh/_init.sh"
+ln -nsf "$ROOT_DIR/zsh/config.d"/* "$HOME/.config/zsh/config.d/"
+ln -nsf "$ROOT_DIR/zsh/autoloaded" "$HOME/.config/zsh/autoloaded"
+ln -nsf "$ROOT_DIR/zsh/starship.toml" "$HOME/.config/starship.toml"
+
+# - Symlink other config files
+ln -nsf "$ROOT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
+ln -nsf "$ROOT_DIR/bat/config" "$HOME/.config/bat/config"
+ln -nsf "$ROOT_DIR/hammerspoon" "$HOME/.config/hammerspoon"
+
+# - Symlink dotfiles executable to bin
+ln -nsf "$ROOT_DIR/dotfiles" "$HOME/bin/dotfiles"
