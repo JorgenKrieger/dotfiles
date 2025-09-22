@@ -22,5 +22,16 @@ ln -nsf "$ROOT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 ln -nsf "$ROOT_DIR/bat/config" "$HOME/.config/bat/config"
 ln -nsf "$ROOT_DIR/hammerspoon" "$HOME/.config/hammerspoon"
 
+# - 1Password socket for SSH
+mkdir -p "$HOME/.1password"
+mkdir -p "$HOME/.ssh"
+
+touch "$HOME/.ssh/config.private"
+chmod 600 "$HOME/.ssh/config.private"
+
+ln -s "$ROOT_DIR/ssh/config" "$HOME/.ssh/config"
+ln -s "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "$HOME/.1password/agent.sock"
+
+
 # - Symlink dotfiles executable to bin
 ln -nsf "$ROOT_DIR/dotfiles" "$HOME/bin/dotfiles"
