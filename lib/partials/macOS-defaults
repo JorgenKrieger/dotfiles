@@ -1,0 +1,380 @@
+#!/usr/bin/env zsh
+
+osascript -e 'tell application "System Preferences" to quit'
+
+
+# Global
+# ──────────────────────────────────────────────────────────────────────
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable smart quote replacement
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+
+# Dock
+# ──────────────────────────────────────────────────────────────────────
+
+# Autohides the Dock. You can toggle the Dock using ⌥ alt+⌘ cmd+d.
+# https://macos-defaults.com/dock/autohide.html
+defaults write com.apple.dock "autohide" -bool "true"
+
+# Change the Dock opening and closing animation times.
+# https://macos-defaults.com/dock/autohide-time-modifier.html
+defaults write com.apple.dock "autohide-time-modifier" -float "0"
+
+# Change the Dock opening delay.
+# https://macos-defaults.com/dock/autohide-delay.html
+defaults write com.apple.dock "autohide-delay" -float "0"
+
+# Show recently used apps in a separate section of the Dock.
+# https://macos-defaults.com/dock/show-recents.html
+defaults write com.apple.dock "show-recents" -bool "false"
+
+# Only show opened apps in Dock.
+# https://macos-defaults.com/dock/static-only.html
+defaults write com.apple.dock "static-only" -bool "true"
+
+# Don’t animate opening applications from the Dock
+defaults write com.apple.dock launchanim -bool false
+
+# "Speed up Mission Control animations"
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+
+
+
+
+# Screenshots
+# ──────────────────────────────────────────────────────────────────────
+
+# Disable screenshot shadow when capturing an app (⌘ cmd+⇧ shift+4 then space).
+# https://macos-defaults.com/screenshots/disable-shadow.html
+defaults write com.apple.screencapture "disable-shadow" -bool "true"
+
+# Set default screenshot location.
+# https://macos-defaults.com/screenshots/location.html
+defaults write com.apple.screencapture "location" -string "$HOME/Desktop/Screenshots"
+
+# Choose the screenshot image format.
+# https://macos-defaults.com/screenshots/type.html
+defaults write com.apple.screencapture "type" -string "png"
+
+
+
+
+
+# Finder
+# ──────────────────────────────────────────────────────────────────────
+
+# Add a quit option to the Finder.
+# https://macos-defaults.com/finder/quitmenuitem.html
+defaults write com.apple.finder "QuitMenuItem" -bool "true"
+
+# Show all file extensions in the Finder.
+# https://macos-defaults.com/finder/appleshowallextensions.html
+defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
+
+# Show hidden files in the Finder. You can toggle the value using ⌘ cmd+⇧ shift+.
+# https://macos-defaults.com/finder/appleshowallfiles.html
+defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
+
+# Show path bar in the bottom of the Finder windows.
+# https://macos-defaults.com/finder/showpathbar.html
+defaults write com.apple.finder "ShowPathbar" -bool "true"
+
+# Set the default view style for folders without custom settings
+# https://macos-defaults.com/finder/fxpreferredviewstyle.html
+defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv"
+
+# Keep folders on top when sorting by name
+# https://macos-defaults.com/finder/_fxsortfoldersfirst.html
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
+
+# Set the default search scope when performing a search
+# https://macos-defaults.com/finder/fxdefaultsearchscope.html
+defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf"
+
+# Remove items in the bin after 30 days
+# https://macos-defaults.com/finder/fxremoveoldtrashitems.html
+defaults write com.apple.finder "FXRemoveOldTrashItems" -bool "true"
+
+# Choose whether to display a warning when changing a file extension.
+# https://macos-defaults.com/finder/fxenableextensionchangewarning.html
+defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
+
+# Choose the delay of the auto-hidden document-proxy icon.
+# https://macos-defaults.com/finder/nstoolbartitleviewrolloverdelay.html
+defaults write NSGlobalDomain "NSToolbarTitleViewRolloverDelay" -float "0"
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices "DSDontWriteNetworkStores" -bool "true"
+defaults write com.apple.desktopservices "DSDontWriteUSBStores" -bool "true"
+
+# Set Desktop as the default location for new Finder windows
+# For other paths, use `PfLo` and `file:///full/path/here/`
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
+
+# Automatically open a new Finder window when a volume is mounted
+defaults write com.apple.frameworks.diskimages "auto-open-ro-root" -bool "true"
+defaults write com.apple.frameworks.diskimages "auto-open-rw-root" -bool "true"
+defaults write com.apple.finder "OpenWindowForNewRemovableDisk" -bool "true"
+
+# Disable window animations and Get Info animations
+defaults write com.apple.finder "DisableAllAnimations" -bool "true"
+
+# Expand the File Info panes:
+# “General”, “Open with”, and “Sharing & Permissions”
+defaults write com.apple.finder FXInfoPanesExpanded -dict \
+  General -bool true \
+  OpenWith -bool true \
+  Privileges -bool true
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
+
+
+
+
+
+# Desktop
+# ──────────────────────────────────────────────────────────────────────
+
+# Hide all icons on desktop
+# https://macos-defaults.com/desktop/createdesktop.html
+defaults write com.apple.finder "CreateDesktop" -bool "false"
+
+# Hides widgets by default
+defaults write com.apple.WindowManager "StandardHideWidgets" -bool "true"
+
+# Disables click wallpaper to see the desktop
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+
+
+
+
+# Wallpaper & Screen Saver
+# ──────────────────────────────────────────────────────────────────────
+
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+
+
+
+
+# Language & Region
+# ──────────────────────────────────────────────────────────────────────
+
+# Set language and text formats
+defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
+defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMetricUnits -bool true
+
+# Show language menu in the top right corner of the boot screen
+sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
+
+
+
+
+
+# Trackpad
+# ──────────────────────────────────────────────────────────────────────
+
+# Enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Map bottom right corner to right-click
+defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 0
+
+
+
+
+
+# Keyboard
+# ──────────────────────────────────────────────────────────────────────
+
+# Choose whether to enable moving focus with Tab and Shift Tab.
+# https://macos-defaults.com/keyboard/applekeyboarduimode.html
+defaults write NSGlobalDomain AppleKeyboardUIMode -int "2"
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+
+
+
+
+# Mission Control
+# ──────────────────────────────────────────────────────────────────────
+
+# Choose whether to rearrange Spaces automatically.
+defaults write com.apple.dock "mru-spaces" -bool "false"
+
+# Group windows by application
+defaults write com.apple.dock "expose-group-apps" -bool "true"
+
+
+
+
+
+# Feedback Assistant
+# ──────────────────────────────────────────────────────────────────────
+
+# Choose whether to autogather large files when submitting a feedback report.
+# https://macos-defaults.com/feedback-assistant/autogather.html
+defaults write com.apple.appleseed.FeedbackAssistant "Autogather" -bool "false"
+
+
+
+
+
+# Time Machine
+# ──────────────────────────────────────────────────────────────────────
+
+# Prevent Time Machine from prompting to use newly connected storage as backup volumes.
+# https://macos-defaults.com/timemachine/donotoffernewdisksforbackup.html
+defaults write com.apple.TimeMachine "DoNotOfferNewDisksForBackup" -bool "true"
+
+
+
+
+
+# Activity Monitor
+# ──────────────────────────────────────────────────────────────────────
+
+# Choose what information should be shown in the app's Dock icon, if any.
+# https://macos-defaults.com/activity-monitor/icontype.html
+defaults write com.apple.ActivityMonitor IconType -int 5
+
+# Show all processes in Activity Monitor
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+# Sort Activity Monitor results by CPU usage
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+
+
+
+
+# Updates
+# ──────────────────────────────────────────────────────────────────────
+
+# Enable the automatic update check
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Download newly available updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+# Install System data files & security updates
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+# Enable mac app store auto-updating
+defaults write com.apple.commerce "AutoUpdate" -bool "true"
+
+
+
+
+
+# Apple Music
+# ──────────────────────────────────────────────────────────────────────
+
+# Display a notification when a new song starts in the Music app.
+# https://macos-defaults.com/misc/userwantsplaybacknotifications.html
+defaults write com.apple.Music "userWantsPlaybackNotifications" -bool "false"
+
+
+
+
+
+# Trae
+# ──────────────────────────────────────────────────────────────────────
+
+# Disable press and hold
+defaults write com.trae.app ApplePressAndHoldEnabled -bool false
+
+
+
+
+
+# Hammerspoon
+# ──────────────────────────────────────────────────────────────────────
+
+# Set custom config file location
+defaults write org.hammerspoon.Hammerspoon MJConfigFile "$HOME/.config/hammerspoon/init.lua"
+
+
+
+
+
+# Miscellaneous
+# ──────────────────────────────────────────────────────────────────────
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
+# Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -r -domain local -domain system -domain user
+
+
+
+
+
+# Kill affected applications
+# ──────────────────────────────────────────────────────────────────────
+
+for APP in "Activity Monitor" \
+  "Address Book" \
+  "Calendar" \
+  "cfprefsd" \
+  "Contacts" \
+  "Dock" \
+  "Finder" \
+  "Mail" \
+  "Messages" \
+  "Photos" \
+  "Safari" \
+  "SizeUp" \
+  "SystemUIServer" \
+  "iCal"; do
+  killall $APP &> /dev/null
+done

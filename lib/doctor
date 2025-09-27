@@ -1,0 +1,101 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Dotfiles doctor
+#
+# Checks the health of your dotfiles installation and identifies issues.
+# ──────────────────────────────────────────────────────────────────────
+
+gum style --bold --foreground 212 "Checking dotfiles status..."
+
+# --- Check Homebrew
+echo "🔍 Checking Homebrew..."
+if ! command -v brew >/dev/null; then
+    log_error "Homebrew not installed"
+else
+    # Check for outdated packages
+    outdated=$(brew outdated --quiet | wc -l | xargs)
+    if [[ $outdated -gt 0 ]]; then
+        log_warning "$outdated outdated packages. Run 'brew update && brew upgrade' to update."
+    else
+        log_success "All packages up to date"
+    fi
+
+    # Check for missing packages from Brewfile - handle potential errors
+    # Use a temporary variable to avoid math expression errors
+    set +e
+    brew bundle check --file="$ROOT_DIR/Brewfile" --no-upgrade 2>&1 | grep "missing" > /tmp/brew_missing.txt
+    set -e
+
+    if [[ ! -s /tmp/brew_missing.txt ]]; then
+        log_success "All Brewfile packages installed"
+    fi
+fi
+
+# --- Check symlinks
+echo "🔍 Checking symlinks..."
+symlink_errors=0
+
+# Check zsh symlinks
+for file in ".zlogin" ".zprofile" ".zshenv" ".zshrc"; do
+    if [[ ! -L "$HOME/$file" || ! -e "$HOME/$file" ]]; then
+        log_error "Symlink for $file is broken or missing"
+        ((symlink_errors++))
+    fi
+done
+
+# Check config directories
+for dir in "$HOME/.config/zsh" "$HOME/.config/ghostty" "$HOME/.config/bat" "$HOME/.config/hammerspoon"; do
+    if [[ ! -d "$dir" ]]; then
+        log_error "Directory $dir is missing"
+        ((symlink_errors++))
+    fi
+done
+
+if [[ $symlink_errors -eq 0 ]]; then
+    log_success "All symlinks are correctly set up"
+fi
+
+# --- Check for required tools
+echo "🔍 Checking required tools..."
+tools_missing=0
+for tool in "gum" "starship" "eza" "bat" "fd" "fzf"; do
+    if ! command -v $tool >/dev/null; then
+        log_error "$tool not installed"
+        ((tools_missing++))
+    fi
+done
+
+if [[ $tools_missing -eq 0 ]]; then
+    log_success "All required tools are installed"
+fi
+
+# --- Check for custom folders
+echo "🔍 Checking custom folders..."
+if [[ ! -d "$HOME/Desktop/Temp" ]]; then
+    log_warning "Temp folder not found at ~/Desktop/Temp"
+fi
+
+if [[ ! -d "$HOME/Desktop/Screenshots" ]]; then
+    log_warning "Screenshots folder not found at ~/Desktop/Screenshots"
+fi
+
+# --- Check macOS settings
+echo "🔍 Checking macOS settings..."
+# This is a simplified check - you might want to add more specific checks
+if defaults read com.apple.dock autohide 2>/dev/null | grep -q "1"; then
+    log_success "Dock autohide is enabled"
+else
+    log_warning "Dock autohide is not enabled. Run 'dotfiles install' to apply macOS defaults."
+fi
+
+# --- Summary
+echo ""
+echo "🩺 Doctor summary:"
+if [[ $symlink_errors -gt 0 || $tools_missing -gt 0 ]]; then
+    log_error "Found issues with your dotfiles installation. See above for details."
+    echo "Run 'dotfiles install' to fix these issues."
+else
+    log_success "Your dotfiles installation looks healthy!"
+fi
+

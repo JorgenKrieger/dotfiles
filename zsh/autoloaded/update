@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+# vim:syntax=zsh
+# vim:filetype=zsh
+
+#
+# Helper Functions
+# http://apple.stackexchange.com/a/96810/7647
+#
+
+update() {
+    # Initialize an empty command string
+    local commands=""
+
+    # Check if brew exists and add its update commands
+    if command -v brew &>/dev/null; then
+        local brew="echo ; gum style --bold '📦 UPDATING HOMEBREW'; brew update; brew upgrade; brew cleanup;"
+        commands+="$brew"
+    fi
+
+    # Check if npm exists and add its update commands
+    if command -v npm &>/dev/null; then
+        local npm="echo ; gum style --bold '📦 UPDATING NPM'; npm update -g;"
+        commands+="$npm"
+    fi
+
+    # Check if tldr exists and add its update commands
+    if command -v tldr &>/dev/null; then
+        local tldr="echo ; gum style --bold '📦 UPDATING TLDR'; tldr --update;"
+        commands+="$tldr"
+    fi
+
+    # Only run the commands if we have any
+    if [[ -n "$commands" ]]; then
+        sh -c "$commands"
+    fi
+}

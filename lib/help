@@ -1,0 +1,89 @@
+#!/usr/bin/env zsh
+
+# ──────────────────────────────────────────────────────────────────────
+# Dotfiles Help
+#
+# Documentation for the dotfiles management system
+# ──────────────────────────────────────────────────────────────────────
+
+gum style --bold --foreground 212 "📚 Dotfiles Help"
+echo ""
+
+# --- Overview
+gum style --bold "Overview"
+echo "This dotfiles system manages your macOS configuration, including:"
+echo "• Shell configuration (zsh)"
+echo "• Package management (Homebrew)"
+echo "• System preferences"
+echo "• Development tools"
+echo "• Application settings"
+echo ""
+
+# --- Commands
+gum style --bold "Available Commands"
+echo ""
+
+gum style --bold --foreground 76 "dotfiles install"
+echo "Interactive installation of dotfiles components:"
+echo "• Homebrew packages (via Brewfile)"
+echo "• DNS settings"
+echo "• Hosts file configuration"
+echo "• Symlinks for configuration files"
+echo "• macOS system preferences"
+echo "• Personal folder structure"
+echo ""
+
+gum style --bold --foreground 76 "dotfiles update"
+echo "Updates your dotfiles installation:"
+echo "• Updates the dotfiles repository"
+echo "• Handles git conflicts if they occur"
+echo "• Updates Homebrew packages"
+echo "• Refreshes symlinks"
+echo "• Optionally updates macOS defaults"
+echo "• Runs health checks"
+echo ""
+
+gum style --bold --foreground 76 "dotfiles doctor"
+echo "Checks the health of your installation:"
+echo "• Verifies Homebrew packages"
+echo "• Validates symlinks"
+echo "• Checks required tools"
+echo "• Verifies custom folders"
+echo "• Confirms macOS settings"
+echo ""
+
+# --- Configuration
+gum style --bold "Configuration Files"
+echo "Important configuration files:"
+echo "• zsh/       - Shell configuration"
+echo "• ghostty/   - Terminal configuration"
+echo "• git/       - Git configuration"
+echo "• Brewfile   - Package definitions"
+echo ""
+
+# --- Tips
+gum style --bold "Tips"
+echo "• Run 'dotfiles' without arguments for an interactive menu"
+echo "• Use 'dotfiles doctor' after making changes to verify your setup"
+echo "• The update command is safe and will handle conflicts gracefully"
+echo "• Configuration files are symlinked from ~/.config/"
+echo ""
+
+# --- Getting Help
+gum style --bold "Getting Help"
+echo "• Run 'dotfiles help' to show this help message"
+echo "• Check the README.md for detailed documentation"
+echo "• Visit https://github.com/JorgenKrieger/dotfiles for updates"
+echo ""
+
+# --- Footer
+gum style --italic "Your dotfiles are managed by $(whoami) and were last updated on $(date '+%Y-%m-%d')"
+
+# --- Return to menu
+echo ""
+gum confirm "Return to menu?" && {
+    local choice
+    choice=$(gum choose --header "What do you want to do?" install update doctor help quit)
+    [[ $choice == quit ]] && return 0
+    run $choice
+}

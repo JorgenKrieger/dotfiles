@@ -1,20 +1,31 @@
-<h1 align="center">Dotfiles</h1>
-<h4 align="center">💻 Automated configuration, preferences and software installer for macOS, linux and WSL.</h4>
-<p align="center">This dotfiles setup has been created for personal use across several devices.</p>
+![Dotfiles](/.github/header.png)
 
-<h3 align="center">Tested on:</h3>
-<div align="center">
-	<img src="https://img.shields.io/badge/-Sequoia-F5F5F7.svg?style=for-the-badge&colorA=FAFAFC&logoColor=323232&logo=apple" />
-	<img src="https://img.shields.io/badge/-WSL_2-F5F5F7.svg?style=for-the-badge&colorB=393939&colorA=4D4D4D&logoColor=CCCCCC&logo=windowsterminal" />
-	<img src="https://img.shields.io/badge/-Ubuntu_22.04-E95420.svg?style=for-the-badge&colorB=C33909&colorA=E95420&logoColor=FFFFFF&logo=ubuntu" />
-</div>
+<p align="center"><b>Personal dotfiles for macOS, configured for my daily workflow.<br/>Feel free to use them as inspiration for your own setup.</b></p>
 
-## Install
+> [!NOTE]
+> These dotfiles are tailored for my personal use. They may need adjustments to work for your environment.
 
-Depending on the system, some of the installation steps might differ.
+## 📚 Essential knowledge
 
-<details>
-<summary><strong>Mac OS</strong></summary>
+> [!WARNING]
+> Dotfiles should only contain **shareable** configuration. System- or security-sensitive settings (e.g., private SSH
+> keys, tokens) are **not** included here. All files are meant to be symlinked into the system.
+
+### General structure
+
+```sh
+zsh/               # Shell config
+  ├─ config.d/     # Aliases, options, paths, plugins
+  └─ autoloaded/   # Utility functions
+lib/               # CLI helpers and partial system installers
+hammerspoon/       # Window management and OS automation
+Brewfile           # Tracked Homebrew packages
+dotfiles           # Interactive CLI for install/update
+
+```
+
+## 🚀 Install
+
 Before being able to clone the repo, we first need to setup git.
 
 ```sh
@@ -24,27 +35,20 @@ xcode-select --install
 Next, clone this repository. Personal preference is to clone this into a directory representing the github user name.
 
 ```sh
-mkdir -p $HOME/jorgenkrieger
-git clone https://github.com/JorgenKrieger/dotfiles.git $HOME/jorgenkrieger/dotfiles
+mkdir -p $HOME/JorgenKrieger
+git clone https://github.com/JorgenKrieger/dotfiles.git $HOME/JorgenKrieger/dotfiles
+cd $HOME/JorgenKrieger/dotfiles
+./dotfiles
 ```
 
-After cloning the repo, run the install scripts.
+The `./dotfiles` command will run the installer, from where you can pick what parts you'd like to install.
 
-</details>
-<details>
-	<summary><strong>WSL</strong></summary>
+## What's included?
 
-Start off with cloning the repository.
-
-```sh
-mkdir -p $HOME/jorgenkrieger
-git clone https://github.com/JorgenKrieger/dotfiles.git $HOME/jorgenkrieger/dotfiles
-```
-
-</details>
-
-## Essential knowledge
-
-> [!WARNING]
-> Although dotfiles contain most preferences, not all preferences are equally sharable (think security settings). That's
-> why the dotfiles repository should only contain shareble data and be symlinked into the system.
+| Category         | Apps                                                                                                                                                                                                                                                                                                                                                                               |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 💻 CLI           | [`zsh`](https://www.zsh.org), [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting), [`git`](https://git-scm.com), [`nodenv`](https://github.com/nodenv/nodenv), [`homebrew`](https://brew.sh)                                                                                                                                                         |
+| 🎨 Design        | [`figma`](https://www.figma.com), [`touchdesigner`](https://www.derivative.ca)                                                                                                                                                                                                                                                                                                     |
+| 🛠️ Developments | [`dbngin`](https://dbngin.com/), [`ghostty`](https://ghostty.org/), [`herd`](https://herd.laravel.com/), [`orbstack`](https://orbstack.dev/), [`webstorm`](https://www.jetbrains.com/webstorm/), [`postman`](https://www.postman.com/), [`trae`](https://www.trae.ai/)                                                                                                             |
+| 🎙️ Chat         | [`discord`](https://discord.com), [`whatsapp`](https://www.whatsapp.com/)                                                                                                                                                                                                                                                                                                          |
+| ✨ Productivity   | [`1password`](https://1password.com), [`arc`](https://arc.net), [`hammerspoon`](https://www.hammerspoon.org), [`hazel`](https://www.hazelapp.com), [`mos`](https://mos.crowerapps.com), [`notion`](https://www.notion.so), [`notion mail`](https://www.notion.com/product/mail), [`notion calendar`](https://www.notion.com/product/calendar), [`raycast`](https://www.raycast.so) |
