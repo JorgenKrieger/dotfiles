@@ -172,6 +172,12 @@ sudo chflags nohidden /Volumes
 # https://macos-defaults.com/desktop/createdesktop.html
 defaults write com.apple.finder "CreateDesktop" -bool "false"
 
+# Hides widgets by default
+defaults write com.apple.WindowManager "StandardHideWidgets" -bool "true"
+
+# Disables click wallpaper to see the desktop
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
 
 
 
