@@ -36,3 +36,7 @@ unset conf
 # Load starship theme
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
 eval "$(starship init zsh)"
+
+
+# Set DOTFILES to the root of the dotfiles repo
+export DOTFILES=$(cd "$(dirname "$(realpath "${(%):-%x}")")/.." && pwd)

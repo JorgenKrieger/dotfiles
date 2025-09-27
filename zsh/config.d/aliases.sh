@@ -51,3 +51,60 @@ alias reload="source $HOME/.zshrc"
 ghpr() {
 	gh pr create --base ${1:-development} --web
 }
+
+# Brew override
+brew() {
+    # Detect the --no-bundle flag and remove it from arguments
+    local no_bundle=false
+    local args=()
+
+    for arg in "$@"; do
+        if [[ "$arg" == "--no-bundle" ]]; then
+            no_bundle=true
+        else
+            args+=("$arg")
+        fi
+    done
+
+    # Run the real brew command
+    command brew "${args[@]}"
+
+    # Skip Brewfile updates if --no-bundle is set
+    if [[ "$no_bundle" == true ]]; then
+        return
+    fi
+
+    # Brewfile path
+    local brewfile=$DOTFILES/Brewfile
+
+    # Extract command and package list
+    local cmd="${args[0]}"
+    local packages=("${args[@]:1}")
+
+    for pkg in "${packages[@]}"; do
+        # Skip empty package names
+        [[ -z "$pkg" ]] && continue
+
+        # Detect if it is a cask
+        if command brew info --cask "$pkg" &>/dev/null 2>&1; then
+            local line="cask \"$pkg\""
+        else
+            local line="brew \"$pkg\""
+        fi
+
+        case "$cmd" in
+        install)
+            # Avoid duplicates
+            grep -qxF "$line" "$brewfile" 2>/dev/null || echo "$line" >> "$brewfile"
+            # Sort Brewfile alphabetically
+            sort -o "$brewfile" "$brewfile"
+            ;;
+        uninstall)
+            # Remove line from Brewfile
+            if [[ -f "$brewfile" ]]; then
+                sed -i '' "/^$(printf '%s\n' "$line" | sed 's/[]\/$*.^[]/\\&/g')$/d" "$brewfile"
+            fi
+            ;;
+        esac
+    done
+}
