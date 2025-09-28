@@ -26,6 +26,10 @@ else
     compinit -C
 fi
 
+# Case insensitive autocomplete
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select
+
 # Load separate config files
 for conf in "$XDG_CONFIG_HOME/zsh/config.d/"*.sh; do
     # shellcheck source=/dev/null
@@ -40,3 +44,11 @@ eval "$(starship init zsh)"
 
 # Set DOTFILES to the root of the dotfiles repo
 export DOTFILES=$(cd "$(dirname "$(realpath "${(%):-%x}")")/.." && pwd)
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/jorgen/Library/Application Support/Herd/config/php/84/"
+
+
+# Herd injected PHP binary.
+export PATH="/Users/jorgen/Library/Application Support/Herd/bin/":$PATH
