@@ -20,9 +20,13 @@ typeset -gU cdpath fpath path
 
 # Zsh search path for executable
 path=(
+  /opt/homebrew/{bin,sbin}
   /usr/local/{bin,sbin}
   $path
 )
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
+# Added by `nodenv init` on Thu Oct  9 00:21:58 CEST 2025
+eval "$(nodenv init - --no-rehash zsh)"
