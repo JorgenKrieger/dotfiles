@@ -28,5 +28,10 @@ path=(
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
-# Added by `nodenv init` on Thu Oct  9 00:21:58 CEST 2025
-eval "$(nodenv init - --no-rehash zsh)"
+# Lazy-load nodenv — shims are in PATH via path.sh so node/npm work immediately.
+# The full init only runs on first explicit `nodenv` call.
+nodenv() {
+    unset -f nodenv
+    eval "$(command nodenv init - --no-rehash zsh)"
+    nodenv "$@"
+}

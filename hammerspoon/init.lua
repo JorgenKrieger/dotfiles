@@ -1,3 +1,5 @@
+require("hs.ipc")
+
 -- Default style
 hs.alert.defaultStyle.strokeColor = {white = 1, alpha = 0}
 hs.alert.defaultStyle.radius = 3

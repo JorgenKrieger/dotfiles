@@ -89,6 +89,34 @@ else
     log_warning "Dock autohide is not enabled. Run 'dotfiles install' to apply macOS defaults."
 fi
 
+# --- Check nodenv
+echo "🔍 Checking nodenv..."
+if ! command -v nodenv >/dev/null; then
+    log_error "nodenv not installed"
+else
+    nodenv_global=$(nodenv global 2>/dev/null)
+    if [[ -z "$nodenv_global" || "$nodenv_global" == "system" ]]; then
+        log_warning "No nodenv global version set. Run 'nodenv global <version>' to set one."
+    else
+        log_success "nodenv global version: $nodenv_global"
+    fi
+fi
+
+# --- Check Hammerspoon
+echo "🔍 Checking Hammerspoon..."
+if ! pgrep -x "Hammerspoon" >/dev/null; then
+    log_warning "Hammerspoon is not running"
+elif ! command -v hs >/dev/null; then
+    log_warning "Hammerspoon IPC CLI (hs) not found — run ':luaeval require(\"hs.ipc\")' in the Hammerspoon console"
+else
+    hs_result=$(hs -c "hs.ipc" 2>&1)
+    if [[ $? -eq 0 ]]; then
+        log_success "Hammerspoon is running and IPC is responsive"
+    else
+        log_error "Hammerspoon IPC error: $hs_result"
+    fi
+fi
+
 # --- Summary
 echo ""
 echo "🩺 Doctor summary:"

@@ -1,8 +1,17 @@
-# Start with a clean base path -- system dirs only
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$PATH
+# Base system dirs
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
-# Add Homebrew (Apple Silicon) first, so it overrides system
+# Homebrew (Apple Silicon)
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 
-# Add custom user bin last, so it overrides all others
+# nodenv — shims must be in PATH so node/npm work before nodenv is explicitly called
+export PATH=$HOME/.nodenv/bin:$HOME/.nodenv/shims:$PATH
+
+# Composer
+export PATH=$HOME/.config/composer/vendor/bin:$PATH
+
+# Local bin
+export PATH=$HOME/.local/bin:$PATH
+
+# User bin — highest priority, overrides everything above
 export PATH=$HOME/bin:$PATH

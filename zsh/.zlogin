@@ -8,7 +8,7 @@
     # Compile all zsh-related files into bytecode
     # Next time the terminal opens, zsh loads the precompiled files instead of parsing them fresh
     zcompdump="${ZSH_DIR:-$HOME}/.zcompdump"
-    if [[ -s "$zcompdump" && (! -s "${zcomppdump}.zwc" || "$zcompdump" -nt "${zcomppdump}.zwc") ]]; then
+    if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
         zrecompile -pq "$zcompdump"
     fi
 

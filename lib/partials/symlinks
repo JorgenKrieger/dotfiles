@@ -19,6 +19,7 @@ ln -nsf "$ROOT_DIR/zsh/starship.toml" "$HOME/.config/starship.toml"
 
 # - Symlink other config files
 ln -nsf "$ROOT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
+ln -nsf "$ROOT_DIR/ghostty/themes" "$HOME/.config/ghostty/"
 ln -nsf "$ROOT_DIR/bat/config" "$HOME/.config/bat/config"
 ln -nsf "$ROOT_DIR/hammerspoon" "$HOME/.config/hammerspoon"
 
@@ -29,8 +30,8 @@ mkdir -p "$HOME/.ssh"
 touch "$HOME/.ssh/config.private"
 chmod 600 "$HOME/.ssh/config.private"
 
-ln -s "$ROOT_DIR/ssh/config" "$HOME/.ssh/config"
-ln -s "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "$HOME/.1password/agent.sock"
+ln -nsf "$ROOT_DIR/ssh/config" "$HOME/.ssh/config"
+ln -nsf "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" "$HOME/.1password/agent.sock"
 
 
 # - Symlink dotfiles executable to bin

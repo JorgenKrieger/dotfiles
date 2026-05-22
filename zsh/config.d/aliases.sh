@@ -37,6 +37,8 @@ alias pull="git pull"
 alias push="git push"
 alias stash="git stash"
 alias pop="git stash pop"
+alias checkout="git checkout"
+alias fetch="git fetch"
 
 # Applications
 alias arc="open -a Arc"
@@ -67,7 +69,7 @@ brew() {
     done
 
     # Run the real brew command
-    command brew "${args[@]}"
+    command brew "${args[@]}" || return
 
     # Skip Brewfile updates if --no-bundle is set
     if [[ "$no_bundle" == true ]]; then
@@ -78,31 +80,29 @@ brew() {
     local brewfile=$DOTFILES/Brewfile
 
     # Extract command and package list
-    local cmd="${args[0]}"
+    # ${args[@]:1} uses 0-based offset, skipping only the subcommand
+    local cmd="${args[1]}"
     local packages=("${args[@]:1}")
 
     for pkg in "${packages[@]}"; do
-        # Skip empty package names
-        [[ -z "$pkg" ]] && continue
-
-        # Detect if it is a cask
-        if command brew info --cask "$pkg" &>/dev/null 2>&1; then
-            local line="cask \"$pkg\""
-        else
-            local line="brew \"$pkg\""
-        fi
+        # Skip empty values and flags
+        [[ -z "$pkg" || "$pkg" == -* ]] && continue
 
         case "$cmd" in
         install)
-            # Avoid duplicates
+            # Detect cask by checking Caskroom — faster than network calls
+            if [[ " ${args[@]} " == *" --cask "* ]] || [[ -d "/opt/homebrew/Caskroom/$pkg" ]]; then
+                local line="cask \"$pkg\""
+            else
+                local line="brew \"$pkg\""
+            fi
             grep -qxF "$line" "$brewfile" 2>/dev/null || echo "$line" >> "$brewfile"
-            # Sort Brewfile alphabetically
-            sort -o "$brewfile" "$brewfile"
             ;;
         uninstall)
-            # Remove line from Brewfile
+            # Remove both brew and cask variants — no detection needed, only one can exist
             if [[ -f "$brewfile" ]]; then
-                sed -i '' "/^$(printf '%s\n' "$line" | sed 's/[]\/$*.^[]/\\&/g')$/d" "$brewfile"
+                sed -i '' "/^brew \"$pkg\"$/d" "$brewfile"
+                sed -i '' "/^cask \"$pkg\"$/d" "$brewfile"
             fi
             ;;
         esac
