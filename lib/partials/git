@@ -49,6 +49,9 @@ git config --global checkout.defaultRemote origin
 # Init
 git config --global init.defaultBranch origin
 
+# Setup hooks path for dotfiles
+git config core.hooksPath .githooks
+
 # Core
 mkdir -p "$HOME/.config/git"
 ln -nfs "$ROOT_DIR/git/.gitignore_global" "$HOME/.config/git/.gitignore_global"

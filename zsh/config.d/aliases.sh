@@ -47,11 +47,24 @@ alias safari="open -a Safari"
 # Helper functions
 alias clear-dns="sudo killall -HUP mDNSResponder"
 alias ip="dig +short myip.opendns.com @resolver4.opendns.com"
-alias reload="source $HOME/.zshrc"
+alias reload="exec zsh"
 
 # Functions
 ghpr() {
 	gh pr create --base ${1:-development} --web
+}
+
+# Sort Brewfile by section: tap → brew → cask, alphabetically within each
+_brewfile_sort() {
+    local file=$1
+    local tmp=$(mktemp)
+    {
+        grep '^tap '  "$file" | sort
+        echo ""
+        grep '^brew ' "$file" | sort
+        echo ""
+        grep '^cask ' "$file" | sort
+    } >| "$tmp" && mv "$tmp" "$file"
 }
 
 # Brew override
@@ -78,6 +91,10 @@ brew() {
 
     # Brewfile path
     local brewfile=$DOTFILES/Brewfile
+    if [[ -z "$DOTFILES" || ! -f "$brewfile" ]]; then
+        echo "brew wrapper: \$DOTFILES not set or Brewfile not found, skipping Brewfile update" >&2
+        return
+    fi
 
     # Extract command and package list
     # ${args[@]:1} uses 0-based offset, skipping only the subcommand
@@ -97,12 +114,14 @@ brew() {
                 local line="brew \"$pkg\""
             fi
             grep -qxF "$line" "$brewfile" 2>/dev/null || echo "$line" >> "$brewfile"
+            _brewfile_sort "$brewfile"
             ;;
         uninstall)
             # Remove both brew and cask variants — no detection needed, only one can exist
             if [[ -f "$brewfile" ]]; then
                 sed -i '' "/^brew \"$pkg\"$/d" "$brewfile"
                 sed -i '' "/^cask \"$pkg\"$/d" "$brewfile"
+                _brewfile_sort "$brewfile"
             fi
             ;;
         esac

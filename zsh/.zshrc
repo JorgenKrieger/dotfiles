@@ -11,7 +11,9 @@ fi
 
 #-----------------------------------------------------
 # Load modular config files — these may extend fpath and PATH
+# plugins.sh is excluded here and sourced after compinit (required by zsh-syntax-highlighting)
 for conf in "$XDG_CONFIG_HOME/zsh/config.d/"*.sh; do
+    [[ "${conf:t}" == "plugins.sh" ]] && continue
     source "${conf}"
 done
 unset conf
@@ -28,6 +30,9 @@ fi
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
+
+# Load plugins after compinit — zsh-syntax-highlighting requires this
+source "$XDG_CONFIG_HOME/zsh/config.d/plugins.sh"
 
 #-----------------------------------------------------
 # Starship prompt
