@@ -27,5 +27,3 @@ export SAVEHIST=10000                      # Maximum events in history file
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZSH_DIR:-$HOME}/.zprofile" ]]; then
   source "${ZSH_DIR:-$HOME}/.zprofile"
 fi
-
-. "$HOME/.vite-plus/env"

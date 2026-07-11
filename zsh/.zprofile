@@ -24,9 +24,6 @@ path=(
   /usr/local/{bin,sbin}
   $path
 )
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # Lazy-load nodenv — shims are in PATH via path.sh so node/npm work immediately.
 # The full init only runs on first explicit `nodenv` call.
