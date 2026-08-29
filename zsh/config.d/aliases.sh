@@ -24,7 +24,7 @@ alias 9='cd -9'
 alias grep='grep --color=auto'
 alias l="eza --all --long --header --no-permissions --octal-permissions --no-user --group-directories-first --time-style=relative --classify=always"
 alias ls="eza --all --long --header --no-permissions --octal-permissions --no-user --group-directories-first --time-style=relative --classify=always"
-alias tree="eza --tree --level=2 --group-directories-first -F"
+alias tree="eza --tree --level=2 --group-directories-first"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark || echo OneHalfLight)"
 alias vim="nvim"
 
