@@ -14,8 +14,8 @@ echo "📦 Updating dotfiles repository"
 # Store current directory
 local current_dir=$(pwd)
 
-# Change to repository root
-(cd "$ROOT_DIR" && git pull)
+# Change to repository root so all git operations below act on the dotfiles repo
+cd "$ROOT_DIR"
 
 # Check for uncommitted changes
 if ! git diff-index --quiet HEAD --; then
@@ -65,6 +65,13 @@ fi
 # --- Update symlinks
 echo "🔗 Ensuring symlinks are up to date"
 source "$LIB_DIR/partials/symlinks"
+
+# --- Refresh hosts blocklist
+if command -v hblock >/dev/null; then
+    echo "🛡️  Refreshing hosts blocklist (hblock)"
+    sudo hblock -q || log_warning "hblock run failed"
+    sudo killall -HUP mDNSResponder 2>/dev/null || true
+fi
 
 # --- Update macOS defaults if needed
 gum confirm "Do you want to update macOS defaults?" && {

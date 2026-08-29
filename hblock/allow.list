@@ -1,0 +1,4 @@
+# Domains hblock should never block — one per line, fixed strings.
+# Removed from the generated blocklist on every run.
+# Example:
+#   pixel.wp.com

@@ -1,2 +1,2 @@
 #!/usr/bin/env zsh
-gitleaks protect --staged --redact
+gitleaks git --staged --redact

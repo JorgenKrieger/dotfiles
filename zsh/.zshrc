@@ -23,9 +23,9 @@ unset conf
 # https://gist.github.com/ctechols/ca1035271ad134841284
 autoload -Uz compinit
 if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' "$ZSH_DIR"/.zcompdump 2>/dev/null)" ]; then
-    compinit
+    compinit -d "$ZSH_DIR/.zcompdump"
 else
-    compinit -C
+    compinit -C -d "$ZSH_DIR/.zcompdump"
 fi
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'

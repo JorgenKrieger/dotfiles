@@ -3,7 +3,7 @@
 # System
 alias shutdown="sudo shutdown now"
 alias reboot="sudo reboot"
-alias suspend="sudo pm-suspend"
+alias sleepnow="pmset sleepnow"
 
 # Improved shell UX
 alias ...="cd ../.."

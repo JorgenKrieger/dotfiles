@@ -2,7 +2,8 @@ require("hs.ipc")
 
 -- Default style
 hs.alert.defaultStyle.strokeColor = {white = 1, alpha = 0}
-hs.alert.defaultStyle.radius = 3
+hs.alert.defaultStyle.radius = 24
+hs.alert.defaultStyle.padding = 14
 
 -- Load scripts
 require "window_management"

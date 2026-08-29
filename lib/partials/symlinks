@@ -5,6 +5,7 @@
 mkdir -p "$HOME/.config/zsh/config.d"
 mkdir -p "$HOME/.config/ghostty"
 mkdir -p "$HOME/.config/bat"
+mkdir -p "$HOME/.config/hblock"
 mkdir -p "$HOME/bin"
 
 # - Symlink zsh files
@@ -22,6 +23,11 @@ ln -nsf "$ROOT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 ln -nsf "$ROOT_DIR/ghostty/themes" "$HOME/.config/ghostty/"
 ln -nsf "$ROOT_DIR/bat/config" "$HOME/.config/bat/config"
 ln -nsf "$ROOT_DIR/hammerspoon" "$HOME/.config/hammerspoon"
+
+# - hblock config (header + allow/deny lists)
+ln -nsf "$ROOT_DIR/hblock/header" "$HOME/.config/hblock/header"
+ln -nsf "$ROOT_DIR/hblock/allow.list" "$HOME/.config/hblock/allow.list"
+ln -nsf "$ROOT_DIR/hblock/deny.list" "$HOME/.config/hblock/deny.list"
 
 # - 1Password socket for SSH
 mkdir -p "$HOME/.1password"

@@ -1,0 +1,9 @@
+# Managed by hblock — https://github.com/hectorm/hblock
+# This block is placed at the top of /etc/hosts; the blocklist is generated below it.
+# Add custom host entries under the marker.
+
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+
+# --- custom entries below ---

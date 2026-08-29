@@ -22,15 +22,21 @@ if echo "$choice" | grep -q "DNS"; then
     run partials/dns
 fi
 
-# --- 4. Host file
-if echo "$choice" | grep -q "DNS"; then
-    echo "- ❌ Preparing hosts blacklist"
-fi
-
-# --- 5. Symlinks
+# --- 4. Symlinks
 if echo "$choice" | grep -q "Symlinks"; then
     echo "- 🔗 Symlinks"
     run partials/symlinks
+fi
+
+# --- 5. Hosts blocklist (hblock)
+if echo "$choice" | grep -q "Hosts file"; then
+    echo "- 🛡️  Applying hosts blocklist (hblock)"
+    if command -v hblock >/dev/null; then
+        sudo hblock -q || log_warning "hblock run failed"
+        sudo killall -HUP mDNSResponder 2>/dev/null || true
+    else
+        log_warning "hblock not installed — run the Homebrew module first"
+    fi
 fi
 
 # --- 6. Login shell

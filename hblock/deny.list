@@ -1,0 +1,4 @@
+# Extra domains to always block — one per line.
+# Added to the generated blocklist on every run.
+# Example:
+#   ads.example.com

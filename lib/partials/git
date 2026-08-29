@@ -26,17 +26,16 @@ local GIT_EMAIL
 GIT_EMAIL=$(gum input --prompt "GitHub email: ")
 
 # User
-git config --global user.name $GIT_USERNAME
-git config --global user.email $GIT_EMAIL
+git config --global user.name "$GIT_USERNAME"
+git config --global user.email "$GIT_EMAIL"
 
 # Color
-git config --global color.diff always
+git config --global color.diff auto
 
 # Push
 git config --global push.default current
 
 # Pull
-git config --global pull.default current
 git config --global pull.ff only
 
 # Merge
@@ -47,10 +46,10 @@ git config --global merge.conflictstyle diff3
 git config --global checkout.defaultRemote origin
 
 # Init
-git config --global init.defaultBranch origin
+git config --global init.defaultBranch main
 
-# Setup hooks path for dotfiles
-git config core.hooksPath .githooks
+# Setup hooks path for dotfiles (repo-local, independent of current directory)
+git -C "$ROOT_DIR" config core.hooksPath "$ROOT_DIR/.githooks"
 
 # Core
 mkdir -p "$HOME/.config/git"

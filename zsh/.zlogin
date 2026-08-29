@@ -19,10 +19,11 @@
         zrecompile -pq "$zcompdump"
     fi
 
-    # zcompile .zshrc
-    zrecompile -pq ${ZSH_DIR:-${HOME}}/.zshrc
-    zrecompile -pq ${ZSH_DIR:-${HOME}}/.zprofile
-    zrecompile -pq ${ZSH_DIR:-${HOME}}/.zshenv
+    # zcompile the startup files — they live in $HOME (symlinked from the repo),
+    # which is where zsh looks for the matching .zwc when sourcing them
+    zrecompile -pq "$HOME"/.zshrc
+    zrecompile -pq "$HOME"/.zprofile
+    zrecompile -pq "$HOME"/.zshenv
 
     # recompile all zsh or sh
     for f in $ZSH_DIR/**/*.sh; do

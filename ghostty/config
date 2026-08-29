@@ -16,7 +16,7 @@ theme = light:PierreLight,dark:PierreDark
 background-opacity = 0.85
 background-blur-radius = 24
 
-# macos-icon = blueprint
-# macos-icon-frame = plastic
+macos-icon = xray
+# macos-icon-frame = aluminum
 # macos-icon-ghost-color = white
 # macos-icon-screen-color = black

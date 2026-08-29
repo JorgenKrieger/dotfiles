@@ -68,6 +68,17 @@ if command -v brew >/dev/null; then
     fi
 fi
 
+# --- Check hosts blocklist
+echo "🔍 Checking hosts blocklist..."
+if ! command -v hblock >/dev/null; then
+    log_warning "hblock not installed"
+elif ! grep -q "hblock" /etc/hosts 2>/dev/null; then
+    log_warning "/etc/hosts is not hblock-generated. Run 'dotfiles install' and pick 'Hosts file'."
+else
+    blocked=$(grep -c '^0\.0\.0\.0 ' /etc/hosts 2>/dev/null || echo 0)
+    log_success "hblock active ($blocked domains blocked)"
+fi
+
 # --- Check for required tools
 echo "🔍 Checking required tools..."
 tools_missing=0
