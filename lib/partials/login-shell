@@ -1,0 +1,31 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+# Point the login shell at Homebrew's zsh so it matches the zsh used for
+# interactive/subshells (PATH order) and `exec zsh`. A version mismatch
+# between the login shell and the interactive shell invalidates zsh
+# bytecode (.zwc) on every login, producing "zwc file has wrong version"
+# warnings — see zsh/.zlogin.
+
+brew_zsh="$(brew --prefix)/bin/zsh"
+
+if [[ ! -x "$brew_zsh" ]]; then
+    log_warning "Homebrew zsh not found at $brew_zsh — skipping login shell setup"
+    return 0
+fi
+
+if ! grep -qxF "$brew_zsh" /etc/shells; then
+    echo "  Adding $brew_zsh to /etc/shells"
+    echo "$brew_zsh" | sudo tee -a /etc/shells >/dev/null
+fi
+
+current_shell="$(dscl . -read "/Users/$USER" UserShell | awk '{print $2}')"
+
+if [[ "$current_shell" == "$brew_zsh" ]]; then
+    log_success "Login shell already set to $brew_zsh"
+else
+    echo "  Changing login shell from $current_shell to $brew_zsh"
+    chsh -s "$brew_zsh"
+    log_success "Login shell set to $brew_zsh — restart your terminal to apply"
+fi

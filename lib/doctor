@@ -56,6 +56,18 @@ if [[ $symlink_errors -eq 0 ]]; then
     log_success "All symlinks are correctly set up"
 fi
 
+# --- Check login shell
+echo "🔍 Checking login shell..."
+if command -v brew >/dev/null; then
+    brew_zsh="$(brew --prefix)/bin/zsh"
+    login_shell="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}')"
+    if [[ "$login_shell" != "$brew_zsh" ]]; then
+        log_warning "Login shell is $login_shell, not $brew_zsh — zsh bytecode caches thrash on every login. Run 'dotfiles install' and pick 'Login shell'."
+    else
+        log_success "Login shell is Homebrew zsh"
+    fi
+fi
+
 # --- Check for required tools
 echo "🔍 Checking required tools..."
 tools_missing=0

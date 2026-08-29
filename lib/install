@@ -2,7 +2,7 @@
 
 # --- Decide on what parts to install
 local choice
-choice=$(gum choose --no-limit --selected="*" --header "What modules do you wish to install?" Homebrew Git DNS "Hosts file" Symlinks "macOS defaults" "Personal folders")
+choice=$(gum choose --no-limit --selected="*" --header "What modules do you wish to install?" Homebrew Git DNS "Hosts file" Symlinks "Login shell" "macOS defaults" "Personal folders")
 
 # --- 1. Install brews
 if echo "$choice" | grep -q "Homebrew"; then
@@ -33,13 +33,19 @@ if echo "$choice" | grep -q "Symlinks"; then
     run partials/symlinks
 fi
 
-# --- 6. macOS defaults
+# --- 6. Login shell
+if echo "$choice" | grep -q "Login shell"; then
+    echo "- 🐚 Login shell"
+    run partials/login-shell
+fi
+
+# --- 7. macOS defaults
 if echo "$choice" | grep -q "macOS defaults"; then
     echo "- 💻 macOS defaults"
     run partials/macOS-defaults
 fi
 
-# --- 7. Personal folders
+# --- 8. Personal folders
 if echo "$choice" | grep -q "Personal folders"; then
     echo "- 📁 Personal folders"
     mkdir -p "$HOME/Desktop/Temp"
