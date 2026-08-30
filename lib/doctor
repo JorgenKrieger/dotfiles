@@ -3,150 +3,208 @@
 # ──────────────────────────────────────────────────────────────────────
 # Dotfiles doctor
 #
-# Checks the health of your dotfiles installation and identifies issues.
+# Checks the health of your dotfiles installation and reports issues.
+# Returns non-zero when any check fails (warnings do not affect the status).
 # ──────────────────────────────────────────────────────────────────────
+
+_dr_pass=0
+_dr_warn=0
+_dr_fail=0
+
+# Never use `(( x++ ))` as a statement — it returns non-zero when x is 0 and
+# `set -e` (inherited from the dotfiles CLI) would abort the whole run.
+check_section() { echo; gum style --bold --foreground 244 "🔍 $1" }
+check_pass()    { _dr_pass=$((_dr_pass + 1)); log_success "$1" }
+check_warn()    { _dr_warn=$((_dr_warn + 1)); log_warning "$1" }
+check_fail()    { _dr_fail=$((_dr_fail + 1)); log_error "$1" }
 
 gum style --bold --foreground 212 "Checking dotfiles status..."
 
-# --- Check Homebrew
-echo "🔍 Checking Homebrew..."
-if ! command -v brew >/dev/null; then
-    log_error "Homebrew not installed"
+# --- Homebrew
+check_section "Homebrew"
+if ! command -v brew >/dev/null 2>&1; then
+    check_fail "Homebrew not installed"
 else
-    # Check for outdated packages
-    outdated=$(brew outdated --quiet | wc -l | xargs)
+    outdated=$(brew outdated --quiet 2>/dev/null | wc -l | tr -d ' ' || true)
+    [[ -z $outdated ]] && outdated=0
     if [[ $outdated -gt 0 ]]; then
-        log_warning "$outdated outdated packages. Run 'brew update && brew upgrade' to update."
+        check_warn "$outdated outdated package(s) — run 'brew upgrade'"
     else
-        log_success "All packages up to date"
+        check_pass "All packages up to date"
     fi
 
-    # Check for missing packages from Brewfile - handle potential errors
-    # Use a temporary variable to avoid math expression errors
-    set +e
-    brew bundle check --file="$ROOT_DIR/Brewfile" --no-upgrade 2>&1 | grep "missing" > /tmp/brew_missing.txt
-    set -e
-
-    if [[ ! -s /tmp/brew_missing.txt ]]; then
-        log_success "All Brewfile packages installed"
+    if brew bundle check --file="$ROOT_DIR/Brewfile" --no-upgrade >/dev/null 2>&1; then
+        check_pass "All Brewfile packages installed"
+    else
+        check_warn "Unmet Brewfile dependencies:"
+        brew bundle check --file="$ROOT_DIR/Brewfile" --no-upgrade --verbose 2>&1 \
+            | grep 'needs to be' | sed 's/^→ /     /' || true
     fi
 fi
 
-# --- Check symlinks
-echo "🔍 Checking symlinks..."
-symlink_errors=0
-
-# Check zsh symlinks
-for file in ".zlogin" ".zprofile" ".zshenv" ".zshrc"; do
-    if [[ ! -L "$HOME/$file" || ! -e "$HOME/$file" ]]; then
-        log_error "Symlink for $file is broken or missing"
-        ((symlink_errors++))
+# --- Symlinks
+check_section "Symlinks"
+_sym_bad=0
+for link in \
+    "$HOME/.zlogin" \
+    "$HOME/.zprofile" \
+    "$HOME/.zshenv" \
+    "$HOME/.zshrc" \
+    "$HOME/.config/zsh/_init.sh" \
+    "$HOME/.config/zsh/autoloaded" \
+    "$HOME/.config/starship.toml" \
+    "$HOME/.config/ghostty/config" \
+    "$HOME/.config/bat/config" \
+    "$HOME/.config/hammerspoon" \
+    "$HOME/.config/hblock/header" \
+    "$HOME/.config/hblock/allow.list" \
+    "$HOME/.config/hblock/deny.list" \
+    "$HOME/.ssh/config" \
+    "$HOME/bin/dotfiles"
+do
+    if [[ ! -L $link ]]; then
+        check_fail "Not a symlink: ${link/#$HOME/~}"
+        _sym_bad=$((_sym_bad + 1))
+    elif [[ ! -e $link ]]; then
+        check_fail "Broken symlink: ${link/#$HOME/~}"
+        _sym_bad=$((_sym_bad + 1))
     fi
 done
 
-# Check config directories
-for dir in "$HOME/.config/zsh" "$HOME/.config/ghostty" "$HOME/.config/bat" "$HOME/.config/hammerspoon"; do
-    if [[ ! -d "$dir" ]]; then
-        log_error "Directory $dir is missing"
-        ((symlink_errors++))
-    fi
-done
-
-if [[ $symlink_errors -eq 0 ]]; then
-    log_success "All symlinks are correctly set up"
+cfg_files=("$HOME"/.config/zsh/config.d/*.sh(N))
+if [[ ${#cfg_files} -eq 0 ]]; then
+    check_fail "No config.d/*.sh files linked"
+    _sym_bad=$((_sym_bad + 1))
 fi
 
-# --- Check login shell
-echo "🔍 Checking login shell..."
-if command -v brew >/dev/null; then
+[[ $_sym_bad -eq 0 ]] && check_pass "All expected symlinks present"
+
+# --- Login shell
+check_section "Login shell"
+if command -v brew >/dev/null 2>&1; then
     brew_zsh="$(brew --prefix)/bin/zsh"
-    login_shell="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}')"
-    if [[ "$login_shell" != "$brew_zsh" ]]; then
-        log_warning "Login shell is $login_shell, not $brew_zsh — zsh bytecode caches thrash on every login. Run 'dotfiles install' and pick 'Login shell'."
+    login_shell=$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}' || true)
+    if [[ ! -x $brew_zsh ]]; then
+        check_warn "Homebrew zsh not found at $brew_zsh"
+    elif [[ $login_shell != "$brew_zsh" ]]; then
+        check_warn "Login shell is ${login_shell:-unknown}, not $brew_zsh — run 'dotfiles install' → Login shell"
     else
-        log_success "Login shell is Homebrew zsh"
+        check_pass "Login shell is Homebrew zsh"
     fi
 fi
 
-# --- Check hosts blocklist
-echo "🔍 Checking hosts blocklist..."
-if ! command -v hblock >/dev/null; then
-    log_warning "hblock not installed"
-elif ! grep -q "hblock" /etc/hosts 2>/dev/null; then
-    log_warning "/etc/hosts is not hblock-generated. Run 'dotfiles install' and pick 'Hosts file'."
+# --- Completion cache
+check_section "Completion cache"
+if [[ -s "$HOME/.config/zsh/.zcompdump" ]]; then
+    check_pass "compdump present (~/.config/zsh/.zcompdump)"
+else
+    check_warn "No compdump yet — open a new shell to build it"
+fi
+
+# --- Hosts blocklist
+check_section "Hosts blocklist"
+if ! command -v hblock >/dev/null 2>&1; then
+    check_warn "hblock not installed"
+elif ! grep -q hblock /etc/hosts 2>/dev/null; then
+    check_warn "/etc/hosts is not hblock-generated — run 'dotfiles install' → Hosts file"
 else
     blocked=$(grep -c '^0\.0\.0\.0 ' /etc/hosts 2>/dev/null || echo 0)
-    log_success "hblock active ($blocked domains blocked)"
+    check_pass "hblock active (${blocked} domains blocked)"
 fi
 
-# --- Check for required tools
-echo "🔍 Checking required tools..."
-tools_missing=0
-for tool in "gum" "starship" "eza" "bat" "fd" "fzf"; do
-    if ! command -v $tool >/dev/null; then
-        log_error "$tool not installed"
-        ((tools_missing++))
+# --- Required tools
+check_section "Required tools"
+_tools_bad=0
+for tool in gum git nodenv starship eza bat fd fzf gh gitleaks hblock nvim; do
+    if ! command -v "$tool" >/dev/null 2>&1; then
+        check_fail "$tool not installed"
+        _tools_bad=$((_tools_bad + 1))
+    fi
+done
+[[ $_tools_bad -eq 0 ]] && check_pass "All required tools installed"
+
+# --- Git
+check_section "Git"
+if command -v git >/dev/null 2>&1; then
+    git_email=$(git config --global user.email 2>/dev/null || true)
+    if [[ -n $git_email ]]; then
+        check_pass "git identity set ($git_email)"
+    else
+        check_warn "git user.email not set — run 'dotfiles install' → Git"
+    fi
+
+    hooks_path=$(git -C "$ROOT_DIR" config --get core.hooksPath 2>/dev/null || true)
+    if [[ $hooks_path == "$ROOT_DIR/.githooks" || $hooks_path == ".githooks" ]]; then
+        check_pass "pre-commit hook wired (gitleaks scan)"
+    else
+        check_warn "core.hooksPath not set for this repo — run 'dotfiles install' → Git"
+    fi
+fi
+
+# --- nodenv
+check_section "nodenv"
+if ! command -v nodenv >/dev/null 2>&1; then
+    check_fail "nodenv not installed"
+else
+    nodenv_global=$(nodenv global 2>/dev/null || true)
+    if [[ -z $nodenv_global || $nodenv_global == system ]]; then
+        check_warn "No nodenv global version set — run 'nodenv global <version>'"
+    else
+        check_pass "nodenv global: $nodenv_global"
+    fi
+fi
+
+# --- Personal folders
+check_section "Personal folders"
+for d in "$HOME/Desktop/Temp" "$HOME/Desktop/Screenshots"; do
+    if [[ -d $d ]]; then
+        check_pass "${d/#$HOME/~} exists"
+    else
+        check_warn "${d/#$HOME/~} missing"
     fi
 done
 
-if [[ $tools_missing -eq 0 ]]; then
-    log_success "All required tools are installed"
-fi
-
-# --- Check for custom folders
-echo "🔍 Checking custom folders..."
-if [[ ! -d "$HOME/Desktop/Temp" ]]; then
-    log_warning "Temp folder not found at ~/Desktop/Temp"
-fi
-
-if [[ ! -d "$HOME/Desktop/Screenshots" ]]; then
-    log_warning "Screenshots folder not found at ~/Desktop/Screenshots"
-fi
-
-# --- Check macOS settings
-echo "🔍 Checking macOS settings..."
-# This is a simplified check - you might want to add more specific checks
-if defaults read com.apple.dock autohide 2>/dev/null | grep -q "1"; then
-    log_success "Dock autohide is enabled"
+# --- macOS defaults
+check_section "macOS defaults"
+if defaults read com.apple.dock autohide 2>/dev/null | grep -q 1; then
+    check_pass "Dock autohide enabled"
 else
-    log_warning "Dock autohide is not enabled. Run 'dotfiles install' to apply macOS defaults."
+    check_warn "Dock autohide off — run 'dotfiles install' → macOS defaults"
 fi
 
-# --- Check nodenv
-echo "🔍 Checking nodenv..."
-if ! command -v nodenv >/dev/null; then
-    log_error "nodenv not installed"
+# --- Hammerspoon
+check_section "Hammerspoon"
+hs_cfg=$(defaults read org.hammerspoon.Hammerspoon MJConfigFile 2>/dev/null || true)
+if [[ $hs_cfg == *".config/hammerspoon"* ]]; then
+    check_pass "Config dir points at ~/.config/hammerspoon"
 else
-    nodenv_global=$(nodenv global 2>/dev/null)
-    if [[ -z "$nodenv_global" || "$nodenv_global" == "system" ]]; then
-        log_warning "No nodenv global version set. Run 'nodenv global <version>' to set one."
-    else
-        log_success "nodenv global version: $nodenv_global"
-    fi
+    check_warn "Hammerspoon MJConfigFile not set to ~/.config/hammerspoon — run 'dotfiles install' → macOS defaults"
 fi
-
-# --- Check Hammerspoon
-echo "🔍 Checking Hammerspoon..."
-if ! pgrep -x "Hammerspoon" >/dev/null; then
-    log_warning "Hammerspoon is not running"
-elif ! command -v hs >/dev/null; then
-    log_warning "Hammerspoon IPC CLI (hs) not found — run ':luaeval require(\"hs.ipc\")' in the Hammerspoon console"
+if ! pgrep -x Hammerspoon >/dev/null 2>&1; then
+    check_warn "Hammerspoon is not running"
+elif ! command -v hs >/dev/null 2>&1; then
+    check_warn "Hammerspoon IPC CLI (hs) not found — enable hs.ipc in the console"
+elif hs -c "hs.ipc" >/dev/null 2>&1; then
+    check_pass "IPC responsive"
 else
-    hs_result=$(hs -c "hs.ipc" 2>&1)
-    if [[ $? -eq 0 ]]; then
-        log_success "Hammerspoon is running and IPC is responsive"
-    else
-        log_error "Hammerspoon IPC error: $hs_result"
-    fi
+    check_fail "Hammerspoon IPC not responding"
 fi
 
 # --- Summary
 echo ""
-echo "🩺 Doctor summary:"
-if [[ $symlink_errors -gt 0 || $tools_missing -gt 0 ]]; then
-    log_error "Found issues with your dotfiles installation. See above for details."
-    echo "Run 'dotfiles install' to fix these issues."
+gum style --bold --foreground 212 "🩺 Doctor summary"
+echo "   $_dr_pass ok · $_dr_warn warning(s) · $_dr_fail error(s)"
+
+if [[ $_dr_fail -gt 0 ]]; then
+    log_error "Issues found — see above. Run 'dotfiles install' to fix."
+    _doctor_status=1
+elif [[ $_dr_warn -gt 0 ]]; then
+    log_warning "Healthy, with warnings above."
+    _doctor_status=0
 else
-    log_success "Your dotfiles installation looks healthy!"
+    log_success "Everything looks healthy!"
+    _doctor_status=0
 fi
 
+unset -f check_section check_pass check_warn check_fail
+return $_doctor_status
