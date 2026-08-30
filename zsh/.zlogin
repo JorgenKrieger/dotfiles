@@ -9,7 +9,7 @@
     # zrecompile prints "zwc file has wrong version" to stderr on every
     # login before rebuilding it.
     for zwc in ${ZSH_DIR:-$HOME}/**/*.zwc(N.); do
-        zcompile -t "$zwc" 2>/dev/null || rm -f "$zwc"
+        zcompile -t "$zwc" >/dev/null 2>&1 || rm -f "$zwc"
     done
 
     # Compile all zsh-related files into bytecode
