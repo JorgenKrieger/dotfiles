@@ -1,7 +1,7 @@
 local keys = require "keys"
 local log = hs.logger.new("WinManage", "debug")
-local padding = 12
-local gap = 12
+local padding = 0
+local gap = 0
 
 hs.window.animationDuration = 0.00
 
@@ -254,5 +254,16 @@ for key, _ in pairs(mm) do
         local win = hs.window.focusedWindow()
         if not win then alertCannotManipulateWindow() return end
         moveToScreen(win, key)
+    end)
+end
+
+local gs = keys.gapSize
+
+for multiplier, _ in pairs(gs) do
+    local keypress = gs[multiplier]
+    hs.hotkey.bind(keypress[1], keypress[2], function()
+        padding = 20 * multiplier
+        gap = 20 * multiplier
+        hs.alert.show("Gap/padding: " .. padding .. "px")
     end)
 end

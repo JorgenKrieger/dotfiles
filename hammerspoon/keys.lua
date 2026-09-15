@@ -26,6 +26,13 @@ Keys = {
         ["Down"] = {{ "ctrl", "alt", "cmd" }, "Down" },
         ["Left"] = {{ "ctrl", "alt", "cmd" }, "Left" },
 
+    },
+    ["gapSize"] = {
+        [0] = {{ "ctrl", "alt", "cmd" }, "0" },
+        [1] = {{ "ctrl", "alt", "cmd" }, "1" },
+        [2] = {{ "ctrl", "alt", "cmd" }, "2" },
+        [3] = {{ "ctrl", "alt", "cmd" }, "3" },
+        [4] = {{ "ctrl", "alt", "cmd" }, "4" },
     }
 }
 
