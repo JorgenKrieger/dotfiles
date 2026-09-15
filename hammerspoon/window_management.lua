@@ -146,39 +146,45 @@ local function moveVertical(frac, startBottom)
     win:setFrame({ x = frame.x, y = newY, w = frame.w, h = h })
 end
 
+---@class Slot
+---@field frac number
+---@field index integer
+
 -- Detect which horizontal fraction and slot index the window currently occupies, or nil if unknown
+---@return Slot?
 local function detectHorizontal(frame, max)
     for _, frac in ipairs({ 1/3, 0.5, 2/3, 1.0 }) do
         local w = targetWidth(max, frac)
         if nearPx(frame.w, w) then
             local positions = xPositions(max, w)
             for i, px in ipairs(positions) do
-                if nearPx(frame.x, px) then return frac, i end
+                if nearPx(frame.x, px) then return { frac = frac, index = i } end
             end
         end
     end
-    return nil, nil
+    return nil
 end
 
 -- Detect which vertical fraction and slot index the window currently occupies, or nil if unknown
+---@return Slot?
 local function detectVertical(frame, max)
     for _, frac in ipairs({ 1/3, 0.5, 2/3, 1.0 }) do
         local h = targetHeight(max, frac)
         if nearPx(frame.h, h) then
             local positions = yPositions(max, h)
             for i, py in ipairs(positions) do
-                if nearPx(frame.y, py) then return frac, i end
+                if nearPx(frame.y, py) then return { frac = frac, index = i } end
             end
         end
     end
-    return nil, nil
+    return nil
 end
 
 local function moveToScreen(win, direction)
     local frame = win:frame()
     local oldMax = win:screen():frame()
-    local hFrac, hSlot = detectHorizontal(frame, oldMax)
-    local vFrac, vSlot = detectVertical(frame, oldMax)
+    local hSlot = detectHorizontal(frame, oldMax)
+    local vSlot = detectVertical(frame, oldMax)
 
     if direction == "Up" then win:moveOneScreenNorth()
     elseif direction == "Right" then win:moveOneScreenEast()
@@ -186,22 +192,22 @@ local function moveToScreen(win, direction)
     elseif direction == "Left" then win:moveOneScreenWest()
     end
 
-    if not hFrac and not vFrac then return end
+    if not hSlot and not vSlot then return end
 
     local newMax = win:screen():frame()
     local cur = win:frame()
     local newX, newW, newY, newH = cur.x, cur.w, cur.y, cur.h
 
-    if hFrac then
-        newW = targetWidth(newMax, hFrac)
+    if hSlot then
+        newW = targetWidth(newMax, hSlot.frac)
         local positions = xPositions(newMax, newW)
-        newX = positions[math.min(hSlot, #positions)]
+        newX = positions[math.min(hSlot.index, #positions)]
     end
 
-    if vFrac then
-        newH = targetHeight(newMax, vFrac)
+    if vSlot then
+        newH = targetHeight(newMax, vSlot.frac)
         local positions = yPositions(newMax, newH)
-        newY = positions[math.min(vSlot, #positions)]
+        newY = positions[math.min(vSlot.index, #positions)]
     end
 
     win:setFrame({ x = newX, y = newY, w = newW, h = newH })
