@@ -23,6 +23,7 @@ listed here:
 | `ghostty/themes/`            | `~/.config/ghostty/themes`           | dir |
 | `bat/config`                 | `~/.config/bat/config`               | file |
 | `hammerspoon/`               | `~/.config/hammerspoon`              | dir |
+| `vim/.vimrc`                  | `~/.vimrc`                            | file |
 | `hblock/{header,allow.list,deny.list}` | `~/.config/hblock/*`       | files |
 | `ssh/config`                 | `~/.ssh/config`                      | file |
 | `git/.gitignore_global`      | `~/.config/git/.gitignore_global`    | file |

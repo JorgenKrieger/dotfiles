@@ -56,6 +56,7 @@ for link in \
     "$HOME/.config/ghostty/config" \
     "$HOME/.config/bat/config" \
     "$HOME/.config/hammerspoon" \
+    "$HOME/.vimrc" \
     "$HOME/.config/hblock/header" \
     "$HOME/.config/hblock/allow.list" \
     "$HOME/.config/hblock/deny.list" \

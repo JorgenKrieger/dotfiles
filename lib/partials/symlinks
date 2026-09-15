@@ -23,6 +23,7 @@ ln -nsf "$ROOT_DIR/ghostty/config" "$HOME/.config/ghostty/config"
 ln -nsf "$ROOT_DIR/ghostty/themes" "$HOME/.config/ghostty/"
 ln -nsf "$ROOT_DIR/bat/config" "$HOME/.config/bat/config"
 ln -nsf "$ROOT_DIR/hammerspoon" "$HOME/.config/hammerspoon"
+ln -nsf "$ROOT_DIR/vim/.vimrc" "$HOME/.vimrc"
 
 # - hblock config (header + allow/deny lists)
 ln -nsf "$ROOT_DIR/hblock/header" "$HOME/.config/hblock/header"
