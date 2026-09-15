@@ -112,5 +112,5 @@ New tools should follow this.
 ## Validating changes
 
 - Shell: `zsh -n <file>` for a syntax check.
-- Lua: `luajit -bl <file> /dev/null` (or `nvim -l <file>`) — `luac` isn't installed.
+- Lua: `luajit -bl <file> /dev/null` — `luac` isn't installed.
 - After any install/symlink change: `dotfiles doctor` (exits non-zero on failure).

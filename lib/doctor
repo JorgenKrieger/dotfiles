@@ -115,7 +115,7 @@ fi
 # --- Required tools
 check_section "Required tools"
 _tools_bad=0
-for tool in gum git nodenv starship eza bat fd fzf gh gitleaks hblock nvim; do
+for tool in gum git nodenv starship eza bat fd fzf gh gitleaks hblock; do
     if ! command -v "$tool" >/dev/null 2>&1; then
         check_fail "$tool not installed"
         _tools_bad=$((_tools_bad + 1))

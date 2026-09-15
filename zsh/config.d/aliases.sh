@@ -26,7 +26,6 @@ alias l="eza --all --long --header --no-permissions --octal-permissions --no-use
 alias ls="eza --all --long --header --no-permissions --octal-permissions --no-user --group-directories-first --time-style=relative --classify=always"
 alias tree="eza --tree --level=2 --group-directories-first"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo OneHalfDark || echo OneHalfLight)"
-alias vim="nvim"
 
 # Git
 alias status="git status"
@@ -108,7 +107,7 @@ brew() {
         case "$cmd" in
         install)
             # Detect cask by checking Caskroom — faster than network calls
-            if [[ " ${args[@]} " == *" --cask "* ]] || [[ -d "/opt/homebrew/Caskroom/$pkg" ]]; then
+            if [[ " ${args[@]} " == *" --cask "* ]] || [[ -d "$(brew --prefix)/Caskroom/$pkg" ]]; then
                 local line="cask \"$pkg\""
             else
                 local line="brew \"$pkg\""
