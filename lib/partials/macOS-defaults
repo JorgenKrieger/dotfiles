@@ -33,6 +33,24 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 
+# Appearance (macOS 27 Golden Gate)
+# ──────────────────────────────────────────────────────────────────────
+# Not yet documented anywhere — found by diffing `defaults read` before/after
+# toggling System Settings → Appearance on this machine. Values below just
+# pin the current choice so a fresh install reproduces it.
+
+# Icon & widget style: Automatic / Light / Dark / Clear / Tinted, each with
+# a Light/Dark/Automatic variant (e.g. ClearAutomatic, TintedDark, Light)
+defaults write NSGlobalDomain AppleIconAppearanceTheme -string "ClearAutomatic"
+
+# Tint color used when the Tinted style is selected (kept even while on
+# another style, so it's ready if you switch)
+defaults write NSGlobalDomain AppleIconAppearanceTintColor -string "Graphite"
+
+# Liquid Glass tint intensity (0-100)
+defaults write NSGlobalDomain NSGlassTintAmount -float 0
+
+
 # Dock
 # ──────────────────────────────────────────────────────────────────────
 
