@@ -6,8 +6,8 @@ window-padding-color = extend
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 
-font-family = JetBrains Mono Regular Light
-font-family-bold = JetBrains Mono Regular ExtraBold
+font-family = GeistMono Nerd Font Regular
+font-family-bold = GeistMono Nerd Font ExtraBold
 font-size = 15
 
 cursor-style = block
@@ -16,7 +16,7 @@ theme = light:PierreLight,dark:PierreDark
 background-opacity = 0.85
 background-blur-radius = 24
 
-macos-icon = xray
+# macos-icon = xray
 # macos-icon-frame = aluminum
 # macos-icon-ghost-color = white
 # macos-icon-screen-color = black

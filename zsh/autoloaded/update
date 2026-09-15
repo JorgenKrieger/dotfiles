@@ -8,29 +8,21 @@
 #
 
 update() {
-    # Initialize an empty command string
-    local commands=""
-
     # Check if brew exists and add its update commands
     if command -v brew &>/dev/null; then
-        local brew="echo ; gum style --bold '📦 UPDATING HOMEBREW'; brew update; brew upgrade; brew cleanup;"
-        commands+="$brew"
+        echo ; gum style --bold '📦 UPDATING HOMEBREW'
+        brew update && brew upgrade && brew cleanup || echo "Homebrew update failed"
     fi
 
     # Check if npm exists and add its update commands
     if command -v npm &>/dev/null; then
-        local npm="echo ; gum style --bold '📦 UPDATING NPM'; npm update -g;"
-        commands+="$npm"
+        lecho ; gum style --bold '📦 UPDATING NPM'
+        npm update -g || echo "NPM global update failed"
     fi
 
     # Check if tldr exists and add its update commands
     if command -v tldr &>/dev/null; then
-        local tldr="echo ; gum style --bold '📦 UPDATING TLDR'; tldr --update;"
-        commands+="$tldr"
-    fi
-
-    # Only run the commands if we have any
-    if [[ -n "$commands" ]]; then
-        sh -c "$commands"
+        echo ; gum style --bold '📦 UPDATING TLDR'
+        tldr --update || echo "TLDR update failed"
     fi
 }

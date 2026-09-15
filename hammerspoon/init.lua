@@ -9,7 +9,7 @@ hs.alert.defaultStyle.padding = 14
 require "window_management"
 
 -- Bind helper hotkeys
-hs.hotkey.bind({ "ctrl", "alt", "cmd " }, "R", function()
+hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "R", function()
     hs.reload()
 end)
 

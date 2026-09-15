@@ -1,7 +1,7 @@
 local keys = require "keys"
 local log = hs.logger.new("WinManage", "debug")
-local padding = 0
-local gap = 0
+local padding = 12
+local gap = 12
 
 hs.window.animationDuration = 0.00
 

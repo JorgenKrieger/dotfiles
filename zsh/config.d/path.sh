@@ -15,3 +15,6 @@ export PATH=$HOME/.local/bin:$PATH
 
 # User bin — highest priority, overrides everything above
 export PATH=$HOME/bin:$PATH
+
+# Desk
+export PATH=$HOME/jorgenkrieger/desk-control-cli:$PATH
