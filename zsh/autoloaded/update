@@ -16,7 +16,7 @@ update() {
 
     # Check if npm exists and add its update commands
     if command -v npm &>/dev/null; then
-        lecho ; gum style --bold '📦 UPDATING NPM'
+        echo ; gum style --bold '📦 UPDATING NPM'
         npm update -g || echo "NPM global update failed"
     fi
 
