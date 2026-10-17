@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+# Single source of truth for the repo symlinks, shared by lib/partials/symlinks
+# (creates them) and lib/doctor (verifies them).
+# Format: "<link, relative to $HOME>:<source, relative to the repo root>"
+# zsh/config.d/* is handled separately (one link per file).
+SYMLINK_MAP=(
+    ".zlogin:zsh/.zlogin"
+    ".zprofile:zsh/.zprofile"
+    ".zshenv:zsh/.zshenv"
+    ".zshrc:zsh/.zshrc"
+    ".config/zsh/_init.sh:zsh/_init.sh"
+    ".config/zsh/autoloaded:zsh/autoloaded"
+    ".config/starship.toml:zsh/starship.toml"
+    ".config/ghostty/config:ghostty/config"
+    ".config/ghostty/themes:ghostty/themes"
+    ".config/bat/config:bat/config"
+    ".config/hammerspoon:hammerspoon"
+    ".vimrc:vim/.vimrc"
+    ".config/hblock/header:hblock/header"
+    ".config/hblock/allow.list:hblock/allow.list"
+    ".config/hblock/deny.list:hblock/deny.list"
+    ".ssh/config:ssh/config"
+    ".config/git/.gitignore_global:git/.gitignore_global"
+    "bin/dotfiles:dotfiles"
+)

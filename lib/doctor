@@ -59,26 +59,9 @@ _check_link() {
     fi
 }
 
-# Keep in sync with lib/partials/symlinks and lib/partials/git (link:repo-path)
-for entry in \
-    ".zlogin:zsh/.zlogin" \
-    ".zprofile:zsh/.zprofile" \
-    ".zshenv:zsh/.zshenv" \
-    ".zshrc:zsh/.zshrc" \
-    ".config/zsh/_init.sh:zsh/_init.sh" \
-    ".config/zsh/autoloaded:zsh/autoloaded" \
-    ".config/starship.toml:zsh/starship.toml" \
-    ".config/ghostty/config:ghostty/config" \
-    ".config/ghostty/themes:ghostty/themes" \
-    ".config/bat/config:bat/config" \
-    ".config/hammerspoon:hammerspoon" \
-    ".vimrc:vim/.vimrc" \
-    ".config/hblock/header:hblock/header" \
-    ".config/hblock/allow.list:hblock/allow.list" \
-    ".config/hblock/deny.list:hblock/deny.list" \
-    ".ssh/config:ssh/config" \
-    ".config/git/.gitignore_global:git/.gitignore_global" \
-    "bin/dotfiles:dotfiles"
+source "$LIB_DIR/partials/symlink-map"
+
+for entry in "${SYMLINK_MAP[@]}"
 do
     _check_link "$HOME/${entry%%:*}" "$ROOT_DIR/${entry#*:}"
 done

@@ -29,7 +29,9 @@ listed here:
 | `git/.gitignore_global`      | `~/.config/git/.gitignore_global`    | file |
 | `dotfiles`                   | `~/bin/dotfiles`                     | file |
 
-Run `dotfiles install` → Symlinks after adding a new config file.
+To add a new config file, add one line to `SYMLINK_MAP` in `lib/partials/symlink-map`
+(shared by the symlinks partial and `dotfiles doctor`; `zsh/config.d/*` is picked up
+automatically), then run `dotfiles install` → Symlinks.
 
 ## Project structure
 
