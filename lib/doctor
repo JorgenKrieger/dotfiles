@@ -45,38 +45,53 @@ fi
 # --- Symlinks
 check_section "Symlinks"
 _sym_bad=0
-for link in \
-    "$HOME/.zlogin" \
-    "$HOME/.zprofile" \
-    "$HOME/.zshenv" \
-    "$HOME/.zshrc" \
-    "$HOME/.config/zsh/_init.sh" \
-    "$HOME/.config/zsh/autoloaded" \
-    "$HOME/.config/starship.toml" \
-    "$HOME/.config/ghostty/config" \
-    "$HOME/.config/bat/config" \
-    "$HOME/.config/hammerspoon" \
-    "$HOME/.vimrc" \
-    "$HOME/.config/hblock/header" \
-    "$HOME/.config/hblock/allow.list" \
-    "$HOME/.config/hblock/deny.list" \
-    "$HOME/.ssh/config" \
-    "$HOME/bin/dotfiles"
-do
+_check_link() {
+    local link=$1 src=$2
     if [[ ! -L $link ]]; then
         check_fail "Not a symlink: ${link/#$HOME/~}"
         _sym_bad=$((_sym_bad + 1))
     elif [[ ! -e $link ]]; then
         check_fail "Broken symlink: ${link/#$HOME/~}"
         _sym_bad=$((_sym_bad + 1))
+    elif [[ ${link:A} != ${src:A} ]]; then
+        check_fail "${link/#$HOME/~} points to ${link:A}, expected ${src/#$ROOT_DIR/\$DOTFILES}"
+        _sym_bad=$((_sym_bad + 1))
     fi
+}
+
+# Keep in sync with lib/partials/symlinks and lib/partials/git (link:repo-path)
+for entry in \
+    ".zlogin:zsh/.zlogin" \
+    ".zprofile:zsh/.zprofile" \
+    ".zshenv:zsh/.zshenv" \
+    ".zshrc:zsh/.zshrc" \
+    ".config/zsh/_init.sh:zsh/_init.sh" \
+    ".config/zsh/autoloaded:zsh/autoloaded" \
+    ".config/starship.toml:zsh/starship.toml" \
+    ".config/ghostty/config:ghostty/config" \
+    ".config/ghostty/themes:ghostty/themes" \
+    ".config/bat/config:bat/config" \
+    ".config/hammerspoon:hammerspoon" \
+    ".vimrc:vim/.vimrc" \
+    ".config/hblock/header:hblock/header" \
+    ".config/hblock/allow.list:hblock/allow.list" \
+    ".config/hblock/deny.list:hblock/deny.list" \
+    ".ssh/config:ssh/config" \
+    ".config/git/.gitignore_global:git/.gitignore_global" \
+    "bin/dotfiles:dotfiles"
+do
+    _check_link "$HOME/${entry%%:*}" "$ROOT_DIR/${entry#*:}"
 done
 
-cfg_files=("$HOME"/.config/zsh/config.d/*.sh(N))
-if [[ ${#cfg_files} -eq 0 ]]; then
-    check_fail "No config.d/*.sh files linked"
-    _sym_bad=$((_sym_bad + 1))
-fi
+for src in "$ROOT_DIR"/zsh/config.d/*(N); do
+    _check_link "$HOME/.config/zsh/config.d/${src:t}" "$src"
+done
+
+for stale in "$HOME"/.config/zsh/config.d/*(N-@); do
+    check_warn "Broken link in config.d: ${stale/#$HOME/~} — remove it"
+done
+
+unset -f _check_link
 
 [[ $_sym_bad -eq 0 ]] && check_pass "All expected symlinks present"
 
@@ -109,7 +124,7 @@ if ! command -v hblock >/dev/null 2>&1; then
 elif ! grep -q hblock /etc/hosts 2>/dev/null; then
     check_warn "/etc/hosts is not hblock-generated — run 'dotfiles install' → Hosts file"
 else
-    blocked=$(grep -c '^0\.0\.0\.0 ' /etc/hosts 2>/dev/null || echo 0)
+    blocked=$(grep -c '^0\.0\.0\.0 ' /etc/hosts 2>/dev/null || true)
     check_pass "hblock active (${blocked} domains blocked)"
 fi
 
