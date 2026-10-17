@@ -67,7 +67,7 @@ echo "🔗 Ensuring symlinks are up to date"
 source "$LIB_DIR/partials/symlinks"
 
 # --- Refresh hosts blocklist
-if command -v hblock >/dev/null; then
+if command -v hblock >/dev/null && gum confirm "Refresh the hosts blocklist? (requires sudo)"; then
     echo "🛡️  Refreshing hosts blocklist (hblock)"
     sudo hblock -q || log_warning "hblock run failed"
     sudo killall -HUP mDNSResponder 2>/dev/null || true
