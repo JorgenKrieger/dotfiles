@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+# GUI git clients often run hooks without Homebrew in PATH
+gitleaks_bin=${commands[gitleaks]:-}
+if [[ -z $gitleaks_bin && -x /opt/homebrew/bin/gitleaks ]]; then
+    gitleaks_bin=/opt/homebrew/bin/gitleaks
+fi
+
+if [[ -z $gitleaks_bin ]]; then
+    print -u2 "gitleaks not installed — skipping secret scan (brew install gitleaks)"
+    exit 0
+fi
+
+exec "$gitleaks_bin" git --staged --redact --no-banner --log-level warn

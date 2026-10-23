@@ -56,10 +56,13 @@ git config --global checkout.defaultRemote origin
 # Init
 git config --global init.defaultBranch main
 
-# Setup hooks path for dotfiles (repo-local, independent of current directory)
-git -C "$ROOT_DIR" config core.hooksPath "$ROOT_DIR/.githooks"
-
 # Core
-mkdir -p "$HOME/.config/git"
+mkdir -p "$HOME/.config/git/hooks"
 ln -nfs "$ROOT_DIR/git/.gitignore_global" "$HOME/.config/git/.gitignore_global"
 git config --global core.excludesfile "$HOME/.config/git/.gitignore_global"
+
+# Secret scan on every commit. A config-based hook runs alongside each repo's own
+# hooks dir (Husky etc.); a global core.hooksPath would replace it.
+ln -nfs "$ROOT_DIR/git/hooks/gitleaks" "$HOME/.config/git/hooks/gitleaks"
+git config --global --replace-all hook.gitleaks.event pre-commit
+git config --global hook.gitleaks.command "$HOME/.config/git/hooks/gitleaks"

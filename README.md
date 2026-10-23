@@ -29,7 +29,7 @@ ghostty/           # Terminal config + themes
 hblock/            # hblock config — header + allow/deny lists; generates /etc/hosts
 bat/  git/  ssh/   # Single-file app configs, symlinked individually
 Brewfile           # Tracked Homebrew packages (auto-maintained — see below)
-.githooks/         # pre-commit hook: gitleaks secret scan
+git/hooks/         # Global pre-commit hook: gitleaks secret scan (runs alongside per-repo hooks)
 ```
 
 > [!IMPORTANT]

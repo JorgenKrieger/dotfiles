@@ -22,6 +22,7 @@ SYMLINK_MAP=(
     ".config/hblock/deny.list:hblock/deny.list"
     ".ssh/config:ssh/config"
     ".config/git/.gitignore_global:git/.gitignore_global"
+    ".config/git/hooks/gitleaks:git/hooks/gitleaks"
     ".config/dbngin/mysql.cnf:dbngin/mysql.cnf"
     ".config/dbngin/redis.conf:dbngin/redis.conf"
     "bin/dotfiles:dotfiles"

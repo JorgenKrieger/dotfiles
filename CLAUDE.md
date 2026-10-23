@@ -27,6 +27,7 @@ listed here:
 | `hblock/{header,allow.list,deny.list}` | `~/.config/hblock/*`       | files |
 | `ssh/config`                 | `~/.ssh/config`                      | file |
 | `git/.gitignore_global`      | `~/.config/git/.gitignore_global`    | file |
+| `git/hooks/gitleaks`         | `~/.config/git/hooks/gitleaks`       | file |
 | `dbngin/{mysql.cnf,redis.conf}` | `~/.config/dbngin/*`              | files |
 | `dotfiles`                   | `~/bin/dotfiles`                     | file |
 
@@ -45,8 +46,10 @@ automatically), then run `dotfiles install` → Symlinks.
   blocklist has no partial — `install`/`update` call `sudo hblock` directly.
 - `zsh/config.d/` — modular ZSH config, sourced in order by `.zshrc`.
 - `zsh/autoloaded/` — ZSH functions loaded on demand.
-- `.githooks/pre-commit` — `gitleaks protect --staged --redact`; `core.hooksPath` is
-  pointed here by `lib/partials/git`. Committing requires `gitleaks` installed.
+- `git/hooks/gitleaks` — global pre-commit secret scan, registered by `lib/partials/git`
+  as a config-based hook (`hook.gitleaks.*` in `~/.gitconfig`) so it runs alongside each
+  repo's own hooks (Husky etc.). Never set a global `core.hooksPath` — it would replace
+  per-repo hooks. Opt out per repo with `git config hook.gitleaks.enabled false`.
 
 ## Technologies
 

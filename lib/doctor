@@ -143,11 +143,15 @@ if command -v git >/dev/null 2>&1; then
         check_warn "git user.email not set — run 'dotfiles install' → Git"
     fi
 
-    hooks_path=$(git -C "$ROOT_DIR" config --get core.hooksPath 2>/dev/null || true)
-    if [[ $hooks_path == "$ROOT_DIR/.githooks" || $hooks_path == ".githooks" ]]; then
-        check_pass "pre-commit hook wired (gitleaks scan)"
+    if git -C "$ROOT_DIR" hook list pre-commit 2>/dev/null | grep -qx gitleaks; then
+        check_pass "Global gitleaks pre-commit hook registered"
     else
-        check_warn "core.hooksPath not set for this repo — run 'dotfiles install' → Git"
+        check_warn "Global gitleaks hook not registered — run 'dotfiles install' → Git"
+    fi
+
+    global_hooks_path=$(git config --global --get core.hooksPath 2>/dev/null || true)
+    if [[ -n $global_hooks_path ]]; then
+        check_warn "Global core.hooksPath is set ($global_hooks_path) — it overrides per-repo hooks"
     fi
 fi
 
