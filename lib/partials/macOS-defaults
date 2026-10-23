@@ -344,16 +344,6 @@ defaults write com.apple.Music "userWantsPlaybackNotifications" -bool "false"
 
 
 
-# Trae
-# ──────────────────────────────────────────────────────────────────────
-
-# Disable press and hold
-defaults write com.trae.app ApplePressAndHoldEnabled -bool false
-
-
-
-
-
 # Hammerspoon
 # ──────────────────────────────────────────────────────────────────────
 

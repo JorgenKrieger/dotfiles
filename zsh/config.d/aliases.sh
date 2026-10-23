@@ -40,7 +40,7 @@ alias checkout="git checkout"
 alias fetch="git fetch"
 
 # Applications
-alias arc="open -a Arc"
+alias brave="open -a Brave"
 alias safari="open -a Safari"
 
 # Helper functions
