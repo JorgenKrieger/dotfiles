@@ -27,6 +27,7 @@ listed here:
 | `hblock/{header,allow.list,deny.list}` | `~/.config/hblock/*`       | files |
 | `ssh/config`                 | `~/.ssh/config`                      | file |
 | `git/.gitignore_global`      | `~/.config/git/.gitignore_global`    | file |
+| `dbngin/{mysql.cnf,redis.conf}` | `~/.config/dbngin/*`              | files |
 | `dotfiles`                   | `~/bin/dotfiles`                     | file |
 
 To add a new config file, add one line to `SYMLINK_MAP` in `lib/partials/symlink-map`
