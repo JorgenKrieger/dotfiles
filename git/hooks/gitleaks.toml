@@ -1,0 +1,20 @@
+# Global gitleaks config for the pre-commit hook: all default rules, plus allowlists
+# for known false positives. Repos with their own .gitleaks.toml use that instead.
+
+title = "dotfiles global gitleaks config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated agent skill docs (e.g. Laravel Boost) contain fake example keys"
+paths = ['''(^|/)\.(claude|github)/skills/''']
+
+[[allowlists]]
+description = "Supabase publishable keys are public by design"
+regexes = ['''^sb_publishable_''']
+
+[[allowlists]]
+description = "CI cache restore-keys are cache prefixes, not secrets"
+regexTarget = "line"
+regexes = ['''^\s*restore-keys:''']

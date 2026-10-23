@@ -50,6 +50,9 @@ automatically), then run `dotfiles install` → Symlinks.
   as a config-based hook (`hook.gitleaks.*` in `~/.gitconfig`) so it runs alongside each
   repo's own hooks (Husky etc.). Never set a global `core.hooksPath` — it would replace
   per-repo hooks. Opt out per repo with `git config hook.gitleaks.enabled false`.
+  `git/hooks/gitleaks.toml` extends the default rules with allowlists for known false
+  positives; the wrapper only passes it when the repo has no `.gitleaks.toml` of its own
+  (`--config` would override that). Add new global exceptions there.
 
 ## Technologies
 
