@@ -10,6 +10,7 @@ mkdir -p "$HOME/.config/hblock"
 mkdir -p "$HOME/.config/git"
 mkdir -p "$HOME/.config/dbngin"
 mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
 mkdir -p "$HOME/.1password"
 mkdir -p "$HOME/bin"
 

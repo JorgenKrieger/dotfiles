@@ -78,6 +78,17 @@ unset -f _check_link
 
 [[ $_sym_bad -eq 0 ]] && check_pass "All expected symlinks present"
 
+# --- SSH
+check_section "SSH"
+ssh_mode=$(stat -f '%Lp' "$HOME/.ssh" 2>/dev/null || true)
+if [[ -z $ssh_mode ]]; then
+    check_warn "~/.ssh not found — run 'dotfiles install' → Symlinks"
+elif [[ $ssh_mode != 700 ]]; then
+    check_warn "~/.ssh is $ssh_mode, expected 700 — run 'chmod 700 ~/.ssh'"
+else
+    check_pass "~/.ssh permissions are 700"
+fi
+
 # --- Login shell
 check_section "Login shell"
 if command -v brew >/dev/null 2>&1; then
