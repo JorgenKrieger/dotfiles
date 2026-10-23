@@ -204,8 +204,8 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool fa
 # ──────────────────────────────────────────────────────────────────────
 
 # Require password immediately after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
+# (the com.apple.screensaver askForPassword keys are ignored on current macOS)
+sysadminctl -screenLock immediate -password -
 
 
 
@@ -277,6 +277,19 @@ defaults write com.apple.dock "expose-group-apps" -bool "true"
 # Choose whether to autogather large files when submitting a feedback report.
 # https://macos-defaults.com/feedback-assistant/autogather.html
 defaults write com.apple.appleseed.FeedbackAssistant "Autogather" -bool "false"
+
+
+
+
+
+# Firewall
+# ──────────────────────────────────────────────────────────────────────
+
+# Don't respond to pings or probes on closed ports
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+
+# Ask before third-party signed apps may accept incoming connections
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
 
 
 
