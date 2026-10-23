@@ -63,6 +63,9 @@ git config --global core.excludesfile "$HOME/.config/git/.gitignore_global"
 
 # Secret scan on every commit. A config-based hook runs alongside each repo's own
 # hooks dir (Husky etc.); a global core.hooksPath would replace it.
+# The command skips instead of failing when the wrapper is missing (dotfiles moved,
+# or checked out at an older commit), which would otherwise block every commit.
 ln -nfs "$ROOT_DIR/git/hooks/gitleaks" "$HOME/.config/git/hooks/gitleaks"
 git config --global --replace-all hook.gitleaks.event pre-commit
-git config --global hook.gitleaks.command "$HOME/.config/git/hooks/gitleaks"
+git config --global hook.gitleaks.command \
+    'f="$HOME/.config/git/hooks/gitleaks"; if [ -x "$f" ]; then exec "$f"; fi; echo "gitleaks hook: $f missing, skipping secret scan (run dotfiles install -> Git)" >&2'
