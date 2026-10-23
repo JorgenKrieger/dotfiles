@@ -3,7 +3,7 @@ window-padding-y = 12
 window-padding-balance = true
 window-padding-color = extend
 
-macos-titlebar-style = tabs
+# macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 
 font-family = GeistMono Nerd Font Regular
@@ -16,7 +16,7 @@ theme = light:PierreLight,dark:PierreDark
 background-opacity = 0.85
 background-blur-radius = 24
 
-# macos-icon = xray
+macos-icon = xray
 # macos-icon-frame = aluminum
 # macos-icon-ghost-color = white
 # macos-icon-screen-color = black
