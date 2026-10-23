@@ -204,8 +204,10 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool fa
 # ──────────────────────────────────────────────────────────────────────
 
 # Require password immediately after sleep or screen saver begins
-# (the com.apple.screensaver askForPassword keys are ignored on current macOS)
+# (the com.apple.screensaver askForPassword keys are ignored on current macOS, and
+# sysadminctl's value didn't survive a reboot on macOS 27 — only System Settings did)
 sysadminctl -screenLock immediate -password -
+log_warning "Also set System Settings → Lock Screen → Require password → Immediately; sysadminctl alone doesn't persist across reboots"
 
 
 
