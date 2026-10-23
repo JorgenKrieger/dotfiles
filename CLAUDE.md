@@ -41,7 +41,7 @@ automatically), then run `dotfiles install` → Symlinks.
   `log_success` / `log_warning` / `log_error` / `die` / `run`. Sets `set -euo pipefail`.
 - `lib/{install,update,doctor,help}` — one script per CLI command, **sourced** by `dotfiles`.
 - `lib/partials/` — sub-steps **sourced** by `lib/` scripts (`symlinks`, `git`, `dns`,
-  `login-shell`, `macOS-defaults`). Because they're sourced, they inherit the caller's
+  `login-shell`, `touchid-sudo`, `macOS-defaults`). Because they're sourced, they inherit the caller's
   shell options and helper functions, and must use `return` (never `exit`). The hosts
   blocklist has no partial — `install`/`update` call `sudo hblock` directly.
 - `zsh/config.d/` — modular ZSH config, sourced in order by `.zshrc`.

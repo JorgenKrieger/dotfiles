@@ -89,6 +89,14 @@ else
     check_pass "~/.ssh permissions are 700"
 fi
 
+# --- sudo
+check_section "sudo"
+if grep -qE '^auth[[:space:]]+sufficient[[:space:]]+pam_tid\.so' /etc/pam.d/sudo_local 2>/dev/null; then
+    check_pass "Touch ID enabled for sudo"
+else
+    check_warn "Touch ID for sudo not enabled — run 'dotfiles install' → Touch ID for sudo"
+fi
+
 # --- Login shell
 check_section "Login shell"
 if command -v brew >/dev/null 2>&1; then

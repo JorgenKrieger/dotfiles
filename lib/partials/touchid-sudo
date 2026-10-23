@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+
+# Touch ID for sudo. /etc/pam.d/sudo_local is included by /etc/pam.d/sudo and survives
+# macOS updates, unlike edits to /etc/pam.d/sudo itself.
+
+sudo_local=/etc/pam.d/sudo_local
+template=/etc/pam.d/sudo_local.template
+pam_line="auth       sufficient     pam_tid.so"
+
+if [[ -f $sudo_local ]] && grep -qE '^auth[[:space:]]+sufficient[[:space:]]+pam_tid\.so' "$sudo_local"; then
+    log_success "Touch ID for sudo already enabled"
+    return 0
+fi
+
+if [[ -f $sudo_local ]]; then
+    echo "$pam_line" | sudo tee -a "$sudo_local" >/dev/null
+elif [[ -f $template ]]; then
+    sed -e 's/^#auth/auth/' "$template" | sudo tee "$sudo_local" >/dev/null
+else
+    echo "$pam_line" | sudo tee "$sudo_local" >/dev/null
+fi
+
+log_success "Touch ID enabled for sudo — falls back to the password over SSH or with the lid closed"
